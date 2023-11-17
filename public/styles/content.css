@@ -1,0 +1,61 @@
+html,
+body {
+  height: 5000px;
+}
+
+.navbar.fixed-top.bg-white.navbar-light {
+    position: fixed;
+    height: 255px;
+    width: 200px;
+    padding-left: 30px;
+  }
+
+#create {
+    position: fixed;
+    height: 50px;
+    width: 100px;
+}
+
+.nav-link.logo {
+    color:#32de84 !important;
+}
+
+.nav-link.join {
+    color: #FFBF00 !important;
+}
+
+a:hover {
+    color: #32de84 !important;
+}
+
+.profile {
+  height: 255px;
+  width: 425px;
+  object-fit: cover;
+}
+
+.latestTitle {
+    padding-top: 50px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.col-9 {
+    padding-left: 150px;
+}
+
+.col-6, .col-2 {
+    padding-left: 150px;
+    padding-top: 30px;
+}
+
+.row.latest {
+    padding-left: 135px;
+}
+
+.thumbnail {
+  width: 230px;
+  height: 120px;
+  object-fit: cover;
+  object-position: 70% 50%;
+}

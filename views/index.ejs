@@ -1,0 +1,56 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container">
+    <div class="row featured">
+        <div class="col-6">
+            <h2>Probably nothing to worry about</h2>
+            <p> <%= homeContent %> </p>
+            <img class="profile" src="images/dino-news.jpeg" alt="sf profile">
+            <h6 class="latestTitle">The Latest</h6>
+        </div>
+    </div>
+    <div class="row line">
+        <div class="col-9">
+            <hr>
+        </div>
+    </div>
+    <div class="row latest">
+        <div class="col-3 previewTitle">
+            <h4>Rex Actor battled anxiety on set</h4>
+        </div>
+        <div class="col-3 text-muted">
+            <p> <%= previewContent %> </p>
+        </div>
+        <div class="col-3 previewImage">
+            <img class="thumbnail" src="images/rex.jpeg" alt="sf profile">
+        </div>
+    </div>
+    <div class="row latest">
+        <div class="col-3 previewTitle">
+            <h4>Keep them safe this summer</h4>
+        </div>
+        <div class="col-3 text-muted">
+            <p> <%= previewContent %> </p>
+        </div>
+        <div class="col-3 previewImage">
+            <img class="thumbnail" src="images/egg.jpeg" alt="sf profile">
+        </div>
+    </div>
+    
+    <% if (locals.title && locals.post) { %>
+        <div class="row latest">
+            <div class="col-3 previewTitle">
+                <h4> <%= title %> </h4>
+            </div>
+            <div class="col-3 text-muted">
+                <p> <%= post %> </p>
+            </div>
+            <div class="col-3 previewImage">
+                <img class="thumbnail" src="images/egg.jpeg" alt="sf profile">
+            </div>
+        </div>
+   <% } %>
+
+</div>
+
+
