@@ -65,9 +65,11 @@ a:hover {
 }
 
 .row.post-title {
+    padding-top: 30px;
     padding-left: 150px;
 }
 
 .row.post-content {
+    padding-top: 30px;
     padding-left: 150px;
 }
