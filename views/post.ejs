@@ -1,0 +1,26 @@
+<%- include("partials/header.ejs") %>
+
+
+<body>
+
+    <% if (locals.title && locals.content) { %>
+
+    <div class="container">
+
+        <div class="row post-title">
+            <div class="col-8">
+                <h1> <%= title %> </h1>
+            </div>
+        </div>
+
+        <div class="row post-content">
+            <div class="col-8">
+                <p> <%= content %> </p>
+            </div>
+        </div>
+           
+    </div>
+
+<% } %>
+
+</body>

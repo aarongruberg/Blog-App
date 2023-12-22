@@ -40,7 +40,7 @@ a:hover {
     margin-bottom: 0px;
 }
 
-.col-9 {
+.col-10 {
     padding-left: 150px;
 }
 
@@ -53,9 +53,21 @@ a:hover {
     padding-left: 135px;
 }
 
+.col-3.text-muted {
+    white-space:normal; 
+}
+
 .thumbnail {
   width: 230px;
   height: 120px;
   object-fit: cover;
   object-position: 70% 50%;
+}
+
+.row.post-title {
+    padding-left: 150px;
+}
+
+.row.post-content {
+    padding-left: 150px;
 }
