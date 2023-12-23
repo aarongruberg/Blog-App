@@ -18,7 +18,7 @@
 
     <div class="row latest">
         <div class="col-3 previewTitle">
-            <h4>Rex Actor battled anxiety on set</h4>
+            <h5>Rex Actor battled anxiety on set</h5>
         </div>
         <div class="col-3 text-muted">
             <p> <%= previewContent %> </p>
@@ -39,10 +39,12 @@
 
             <div class="row latest">
                 <div class="col-3 previewTitle">
-                    <h4> <%= post[0] %> </h4>
+                    <h5> <%= post[0] %> </h5>
+                    <p> <%= post[2] %> </p>
+                    <p>  <%= time %> &#x2022; <%= date %> </p>
                 </div>
                 <div class="col-3 text-muted">
-                    <p> <%= post[1].substring(0, 100) + "..." %> 
+                    <p> <%= post[1].substring(0, 170) + "..." %> 
                         <a href="/posts/<%= post[0] %>">Read More</a> 
                     </p>
                     

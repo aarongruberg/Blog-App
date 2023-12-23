@@ -13,11 +13,19 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 var postsArray = [];
 
+// Date and time
+let date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
+let time = new Date().toLocaleTimeString('default', {timeStyle: 'short'});
+console.log(date); 
+console.log(time);
+
 // Homepage route
 app.get("/", (req, res) => {
     res.render("index.ejs", {homeContent: homeContent,
          previewContent: previewContent,
-         postsArray: postsArray});
+         postsArray: postsArray,
+         date: date,
+         time: time});
          //console.log(postsArray);
 });
 
@@ -30,7 +38,8 @@ app.post("/compose", (req, res) => {
 app.post("/submit", (req, res) => {
     const post = [
         req.body["title"],
-        req.body["content"]
+        req.body["content"],
+        req.body["your-name"]
     ];
     postsArray.push(post);
     res.redirect("/");
@@ -49,6 +58,9 @@ app.get("/posts/:test", (req, res) => {
             // Keep original title to pass to post.ejs file
             const title = postsArray[i][0];
 
+            // Author name
+            const author = postsArray[i][2];
+
             // Convert title to lower case
             postsArray[i][0] =  _.lowerCase(postsArray[i][0]);
 
@@ -63,7 +75,10 @@ app.get("/posts/:test", (req, res) => {
                 // Send user to selected post
                 res.render("post.ejs", {
                     title: title, 
-                    content: postsArray[i][1]
+                    content: postsArray[i][1],
+                    author: author,
+                    date: date,
+                    time: time
                 });
             }
           }

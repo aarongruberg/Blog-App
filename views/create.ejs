@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/content.css">
-    <title>Create a Post</title>
+    <title>New Post</title>
 </head>
 
 <header>
@@ -26,12 +26,12 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-2">
-                <h1>compose</h1>
+            <div class="col-6">
+                <h1>New Post</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-9">
+            <div class="col-6">
                 <form action="/submit" method="POST">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Title</label>
@@ -40,6 +40,10 @@
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Content</label>
                         <textarea class="form-control" name="content" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Your Name</label>
+                        <input type="text" class="form-control" name="your-name">
                     </div>
                     <input type="submit" value="Publish">
                 </form>          
