@@ -53,6 +53,19 @@ a:hover {
     padding-left: 135px;
 }
 
+.col-3.previewTitle {
+    padding-right: 40px;
+}
+
+.preview-author {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.preview-datetime {
+    padding-right: 42px;
+}
+
 .col-3.text-muted {
     white-space:normal; 
 }
@@ -66,10 +79,19 @@ a:hover {
 
 .row.post-title {
     padding-top: 30px;
-    padding-left: 150px;
+    padding-left: 175px;
+}
+
+.post-title {
+    padding-right: 30px;
+}
+
+.post-author {
+    padding-top: 20px;
+    padding-bottom: 0px;
 }
 
 .row.post-content {
-    padding-top: 30px;
-    padding-left: 150px;
+    padding-top: 10px;
+    padding-left: 175px;
 }

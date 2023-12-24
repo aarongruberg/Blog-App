@@ -9,7 +9,7 @@
     font-weight: 800;
 }
 
-h2, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
 }
@@ -19,3 +19,24 @@ p {
     font-size: 10pt;
 }
 
+.preview-author {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+}
+
+.post-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: 25pt;
+}
+
+.post-author {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+}
+
+.post-datetime {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10pt;
+    font-weight: 400;
+}
