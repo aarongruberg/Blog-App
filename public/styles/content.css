@@ -28,6 +28,10 @@ a:hover {
     color: #32de84 !important;
 }
 
+.featured-title {
+    padding-bottom: 20px;
+ }
+
 .profile {
   height: 255px;
   width: 440px;
