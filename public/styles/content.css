@@ -30,7 +30,7 @@ a:hover {
 
 .profile {
   height: 255px;
-  width: 425px;
+  width: 440px;
   object-fit: cover;
 }
 
@@ -40,21 +40,37 @@ a:hover {
     margin-bottom: 0px;
 }
 
+.col-6.featured {
+    padding-bottom: 40px;
+}
+
 .col-10 {
-    padding-left: 150px;
+    padding-left: 130px;
 }
 
 .col-6, .col-2 {
-    padding-left: 150px;
+    padding-left: 130px;
     padding-top: 30px;
 }
 
 .row.latest {
-    padding-left: 135px;
+    padding-left: 115px;
+    padding-top: 10px;
+}
+
+a {
+    text-decoration: none !important;
+    color: black;
+  }
+
+.preview-row:hover {
+    color: black !important;
+    opacity:0.5;
 }
 
 .col-3.previewTitle {
     padding-right: 40px;
+    margin-right: -25px;
 }
 
 .preview-author {
@@ -68,11 +84,13 @@ a:hover {
 
 .col-3.text-muted {
     white-space:normal; 
+    text-align: left;  
+    margin-right: 15px;  
 }
 
 .thumbnail {
-  width: 230px;
-  height: 120px;
+  width: 215px;
+  height: 115px;
   object-fit: cover;
   object-position: 70% 50%;
 }

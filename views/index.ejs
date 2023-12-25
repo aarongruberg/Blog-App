@@ -2,31 +2,19 @@
 
 <div class="container">
     <div class="row featured">
-        <div class="col-6">
+        <div class="col-6 featured">
             <h2>Probably nothing to worry about</h2>
             <p> <%= homeContent %> </p>
             <img class="profile" src="images/dino-news.jpeg" alt="sf profile">
-            <h6 class="latestTitle">The Latest</h6>
         </div>
     </div>
 
     <div class="row line">
         <div class="col-10">
-            <hr>
+            <h6 class="latestTitle">The Latest</h6>
         </div>
     </div>
 
-    <div class="row latest">
-        <div class="col-3 previewTitle">
-            <h5>Rex Actor battled anxiety on set</h5>
-        </div>
-        <div class="col-3 text-muted">
-            <p> <%= previewContent %> </p>
-        </div>
-        <div class="col-3 previewImage">
-            <img class="thumbnail" src="images/rex.jpeg" alt="sf profile">
-        </div>
-    </div>
     
     <% if (locals.postsArray) { %>
         <% postsArray.forEach(function(post) { %>
@@ -37,22 +25,24 @@
                 </div>
             </div>
 
+            <a class="preview-row" href="/posts/<%= post[0] %>">
             <div class="row latest">
                 <div class="col-3 previewTitle">
                     <h5> <%= post[0] %> </h5>
                     <p class="preview-author"> <%= post[2] %> </p>
-                    <p class="preview-datetime">  <%= time %> &#x2022; <%= date %> </p>
+                    <p class="preview-datetime text-muted">  <%= time %> &#x2022; <%= date %> </p>
                 </div>
                 <div class="col-3 text-muted">
                     <p> <%= post[1].substring(0, 170) + "..." %> 
-                        <a href="/posts/<%= post[0] %>">Read More</a> 
+                        
                     </p>
                     
                 </div>
                 <div class="col-3 previewImage">
-                    <img class="thumbnail" src="images/egg.jpeg" alt="sf profile">
+                    <img class="thumbnail" src="images/rex.jpeg" alt="sf profile">
                 </div>
-            </div>    
+            </div>
+            </a> 
         <%  }) %>
    <% } %>
 
