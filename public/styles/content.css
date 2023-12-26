@@ -100,8 +100,8 @@ a {
 }
 
 .post-image {
-  width: 500px;
-  height: 350px;
+  width: 570px;
+  height: 375px;
   object-fit: cover;
   object-position: 70% 50%;
   margin-left: 175px;
@@ -118,10 +118,11 @@ a {
 
 .post-author {
     padding-top: 20px;
-    padding-bottom: 0px;
+    padding-bottom: 15px;
 }
 
 .row.post-content {
-    padding-top: 10px;
+    padding-top: 40px;
     padding-left: 175px;
+    padding-right: 26px;
 }
