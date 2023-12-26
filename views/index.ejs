@@ -30,7 +30,7 @@
                 <div class="col-3 previewTitle">
                     <h5> <%= post[0] %> </h5>
                     <p class="preview-author"> <%= post[2] %> </p>
-                    <p class="preview-datetime text-muted">  <%= time %> &#x2022; <%= date %> </p>
+                    <p class="preview-datetime text-muted">  <%= post[3] %> &#x2022; <%= post[4] %> </p>
                 </div>
                 <div class="col-3 text-muted">
                     <p> <%= post[1].substring(0, 170) + "..." %> 
@@ -39,7 +39,7 @@
                     
                 </div>
                 <div class="col-3 previewImage">
-                    <img class="thumbnail" src="images/rex.jpeg" alt="sf profile">
+                    <img class="thumbnail" src= "<%= post[5] %>" alt="sf profile">
                 </div>
             </div>
             </a> 

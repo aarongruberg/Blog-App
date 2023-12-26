@@ -47,3 +47,9 @@ p {
     font-size: 10pt;
     font-weight: 400;
 }
+
+.post-content-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    line-height: 2;
+}

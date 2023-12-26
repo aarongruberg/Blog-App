@@ -99,6 +99,14 @@ a {
   object-position: 70% 50%;
 }
 
+.post-image {
+  width: 500px;
+  height: 350px;
+  object-fit: cover;
+  object-position: 70% 50%;
+  margin-left: 175px;
+}
+
 .row.post-title {
     padding-top: 30px;
     padding-left: 175px;

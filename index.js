@@ -8,25 +8,27 @@ const port = 3000;
 const homeContent = "Lorem Ipsum"
 const previewContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
 
-app.use(express.static("public/"));
+// Set static directories for "/" and "/posts" routes
+app.use('/', express.static("public/"));
+app.use('/posts', express.static('public'))
+
 app.use(bodyParser.urlencoded({ extended: true}));
 
 var postsArray = [];
 
 // Date and time
-let date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
-let time = new Date().toLocaleTimeString('default', {timeStyle: 'short'});
-console.log(date); 
-console.log(time);
+let date = '';
+let time = '';
+
+// Path for display image
+let imagePath = '';
 
 // Homepage route
 app.get("/", (req, res) => {
     res.render("index.ejs", {homeContent: homeContent,
          previewContent: previewContent,
-         postsArray: postsArray,
-         date: date,
-         time: time});
-         //console.log(postsArray);
+         postsArray: postsArray});
+         console.log(postsArray);
 });
 
 // Compose a blog post
@@ -36,10 +38,19 @@ app.post("/compose", (req, res) => {
 
 // Submit your blog post
 app.post("/submit", (req, res) => {
+
+    time = new Date().toLocaleTimeString('default', {timeStyle: 'short'});
+    date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
+
+    imagePath = 'images/rex.jpeg'
+
     const post = [
         req.body["title"],
         req.body["content"],
-        req.body["your-name"]
+        req.body["your-name"],
+        time,
+        date,
+        imagePath
     ];
     postsArray.push(post);
     res.redirect("/");
@@ -77,8 +88,9 @@ app.get("/posts/:test", (req, res) => {
                     title: title, 
                     content: postsArray[i][1],
                     author: author,
-                    date: date,
-                    time: time
+                    time: postsArray[i][3],
+                    date: postsArray[i][4],
+                    imagePath: postsArray[i][5]
                 });
             }
           }
