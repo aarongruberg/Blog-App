@@ -34,7 +34,7 @@ a:hover {
 
 .profile {
   height: 255px;
-  width: 440px;
+  width: 445px;
   object-fit: cover;
 }
 
@@ -45,14 +45,20 @@ a:hover {
 }
 
 .col-6.featured {
-    padding-bottom: 40px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.featured-author {
+    padding-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 .col-10 {
     padding-left: 130px;
 }
 
-.col-6, .col-2 {
+.col-6, .col-2, .col-7 {
     padding-left: 130px;
     padding-top: 30px;
 }

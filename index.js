@@ -5,7 +5,7 @@ import _ from 'lodash';
 const app = express();
 const port = 3000;
 
-const homeContent = "Lorem Ipsum"
+const homeContent = "Ron Miller"
 const previewContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
 
 // Set static directories for "/" and "/posts" routes

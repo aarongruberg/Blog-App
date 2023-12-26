@@ -17,7 +17,12 @@ h1, h2, h4, h5, h6 {
 .featured-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
-    font-size: 29pt;
+    font-size: 25pt;
+}
+
+.featured-author {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
 }
 
 p {
@@ -28,7 +33,7 @@ p {
 
 .preview-author {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .post-title {
@@ -39,7 +44,7 @@ p {
 
 .post-author {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 800;
+    font-weight: 600;
     font-size: 10pt;
 }
 
