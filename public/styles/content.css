@@ -5,10 +5,31 @@ body {
 
 .navbar.fixed-top.bg-white.navbar-light {
     position: fixed;
-    height: 255px;
-    width: 200px;
+
     padding-left: 30px;
   }
+
+@media all and (min-width: 992px) {
+    .navbar.fixed-top.bg-white.navbar-light {
+      width: 150px;
+    }
+  }
+
+@media all and (min-width: 992px) {
+    .logo {
+      position: relative;
+      top: -50px;
+    }
+  }
+
+@media all and (min-width: 992px) {
+    .flex-column {
+      position: relative;
+      right: 100px;
+      top: 50px;
+    }
+  }
+  
 
 #create {
     position: fixed;
@@ -16,7 +37,7 @@ body {
     width: 100px;
 }
 
-.nav-link.logo {
+.logo {
     color:#32de84 !important;
 }
 
