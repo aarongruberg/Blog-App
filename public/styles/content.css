@@ -5,13 +5,12 @@ body {
 
 .navbar.fixed-top.bg-white.navbar-light {
     position: fixed;
-
     padding-left: 30px;
   }
 
 @media all and (min-width: 992px) {
     .navbar.fixed-top.bg-white.navbar-light {
-      width: 150px;
+      width: 175px;
     }
   }
 
@@ -25,11 +24,29 @@ body {
 @media all and (min-width: 992px) {
     .flex-column {
       position: relative;
-      right: 100px;
+      right: 75px;
       top: 50px;
+      width: 160px;
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .flex-column {
+       height: 300px;
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .row.featured, .col-7.featured, .col-6.featured {
+       justify-content: left;
+       text-align: left;
+       padding-top: 40px;
+       padding-left: 0px;
+       width: auto;
     }
   }
   
+
 
 #create {
     position: fixed;

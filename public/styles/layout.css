@@ -9,6 +9,20 @@
     font-weight: 800;
 }
 
+@media all and (max-width: 767px) {
+    .nav-link {
+       font-family: 'Open Sans', sans-serif;
+       font-size: 16pt;
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .create-post-button {
+       font-family: 'Open Sans', sans-serif;
+       font-size: 16pt;
+    }
+  }
+
 h1, h2, h4, h5, h6 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
