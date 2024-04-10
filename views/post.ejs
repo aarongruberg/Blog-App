@@ -8,19 +8,19 @@
     <div class="container">
 
         <div class="row post-title">
-            <div class="col-9">
+            <div class="col-12 col-md-9 post-title-info">
                 <h1 class="post-title"> <%= title %> </h1>
                 <p class="post-author"> <%= author %> &nbsp; &nbsp; <span class="post-datetime text-muted"> <%= time %> &#x2022; <%= date %> </span> </p>
                 
             </div>
         </div>
 
-        <div>
+        <div class="row post-image">
             <img class="post-image" src= "<%= imagePath %>" alt="sf profile">
         </div>
 
         <div class="row post-content">
-            <div class="col-8">
+            <div class="col-12 col-md-8 content">
                 <p class="post-content-text"> <%= content %> </p>
             </div>
         </div>

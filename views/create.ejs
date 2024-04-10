@@ -1,37 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Merriweather&family=Montserrat:wght@100;400;900&family=Noto+Sans+Tangsa:wght@500&family=Open+Sans:wght@400;500;700&family=Sacramento&family=Ubuntu&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
-    <link rel="stylesheet" href="/styles/layout.css">
-    <link rel="stylesheet" href="/styles/content.css">
-    <title>New Post</title>
-</head>
-
-<header>
-    <nav class="navbar fixed-top bg-white navbar-light" id="create">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link logo" href="#">DC</a>
-          </li>
-        </ul>
-      </nav>
-</header>
+<%- include("partials/header.ejs") %>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 create-post-page-title">
                 <h1>New Post</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 create-post">
                 <form action="/submit" method="POST">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Title</label>
@@ -39,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Content</label>
-                        <textarea class="form-control" name="content" rows="3"></textarea>
+                        <textarea class="form-control content" name="content" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Your Name</label>
