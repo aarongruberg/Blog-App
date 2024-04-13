@@ -74,10 +74,22 @@ p {
     font-size: 10pt;
 }
 
+.green-slash {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 8pt;
+    font-weight: 400;
+}
+
 .post-datetime {
     font-family: 'Open Sans', sans-serif;
     font-size: 8pt;
     font-weight: 400;
+}
+
+.image-credits-bold {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 10pt;
 }
 
 .post-content-text {

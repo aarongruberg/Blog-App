@@ -8,6 +8,16 @@ body {
     padding-left: 30px;
   }
 
+svg {
+    height: 20px;
+    width: 20px;
+}
+
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
+}
+
 @media all and (min-width: 992px) {
     .navbar.fixed-top.bg-white.navbar-light {
       width: 175px;
@@ -78,7 +88,8 @@ body {
     .col-12.latest {        
         justify-content: left;
         padding-top: 0% !important;
-        padding-left: 0%;
+        padding-left: 3%;
+        padding-bottom: 1%;
         width: 100%;
     }
   }
@@ -91,12 +102,13 @@ body {
   
   @media all and (max-width: 767px) {
     .col-12.line {        
-        padding-left: 0px;
+        padding-left: 3%;
     }
   }
 
   @media all and (max-width: 767px) {
     .row.latest {   
+        padding-top: 2% !important;
         padding-left: 0px !important;
         
     }
@@ -126,8 +138,10 @@ body {
 
   @media all and (max-width: 767px) {
     .thumbnail {   
-        max-width: 90%;
-        max-height: 45%;
+        max-width: 120px !important; 
+        max-height: 55px !important;
+        float: right !important;
+        padding-right: 7% !important;
         
     }
   }
@@ -170,7 +184,15 @@ body {
   }
 
   @media all and (max-width: 767px) {
-    .post-datetime.text-muted::before{
+    .post-author{
+      padding-top: 4% !important;
+      padding-bottom: 2% !important;
+
+  }
+  }
+
+  @media all and (max-width: 767px) {
+    .green-slash::before{
       content: "\a";
       white-space: pre;
   }
@@ -268,12 +290,21 @@ a:hover {
     padding-top: 10px;
 }
 
+hr {
+  border: none;
+  height: 2px;
+  opacity: 0.08;
+  /* Set the hr color */
+  color: #333;  /* old IE */
+  background-color: #333;  /* Modern Browsers */
+}
+
 a {
     text-decoration: none !important;
     color: black;
   }
 
-.preview-row:hover {
+.preview-row:hover, .preview-row:active {
     color: black !important;
     opacity:0.5;
 }
@@ -317,6 +348,31 @@ a {
   margin-left: 175px;
 }
 
+.camera-icon-image {
+  width: 20px;
+  height: 20px;
+  object-fit: fill;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.image-credits {
+  width: 250px;
+  padding-left: 0;
+}
+
+.row.camera-icon {
+  padding-left: 12%;
+  padding-top: 5%;
+}
+
+.row.camera-icon > img,
+.row.camera-icon > p {
+  display: inline-block;
+  vertical-align: middle; /* Aligns items vertically */
+  margin-right: 10px; /* Optional, for spacing between elements */
+}
+
 .row.post-title {
     padding-top: 30px;
     padding-left: 175px;
@@ -326,13 +382,17 @@ a {
     padding-right: 30px;
 }
 
+.green-slash {
+    color: #32de84;
+}
+
 .post-author {
     padding-top: 20px;
     padding-bottom: 15px;
 }
 
 .row.post-content {
-    padding-top: 40px;
+    padding-top: 2%;
     padding-left: 175px;
     padding-right: 26px;
 }
