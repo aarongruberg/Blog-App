@@ -50,7 +50,8 @@ app.post("/submit", (req, res) => {
         req.body["your-name"],
         time,
         date,
-        imagePath
+        imagePath,
+        req.body["category"]
     ];
     postsArray.push(post);
     res.redirect("/");
