@@ -18,7 +18,7 @@ app.use(fileUpload());
 app.use('/', express.static("public/"));
 app.use('/posts', express.static('public'))
 
-app.use(bodyParser.urlencoded({ extended: true}, { limit: '2000kb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '2000kb'}));
 
 var postsArray = [];
 
