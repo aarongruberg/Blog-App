@@ -57,6 +57,12 @@ svg {
     }
 }
 
+@media all and (max-width: 767px) {
+  .row.featured {
+     margin-top: 15%;
+  }
+}
+
   @media all and (max-width: 767px) {
     .navbar.fixed-top.bg-white.navbar-light {
        padding-top: 0px;

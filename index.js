@@ -1,8 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
 import _ from 'lodash';
-import fs from 'fs';
-
 import fileUpload from 'express-fileupload';
 
 const app = express();
@@ -21,6 +19,8 @@ app.use('/posts', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true, limit: '2000kb'}));
 
 var postsArray = [];
+var featured = 0;
+var oldFeatured = 0;
 
 // Date and time
 let date = '';
@@ -31,10 +31,30 @@ let imagePath = '';
 
 // Homepage route
 app.get("/", (req, res) => {
-    res.render("index.ejs", {homeContent: homeContent,
-         previewContent: previewContent,
+
+   //Set a random post to be featured
+   featured = postsArray[Math.floor(Math.random()*postsArray.length)];
+   //console.log(featured);
+
+   while (featured === oldFeatured && postsArray.length > 1) {
+    featured = postsArray[Math.floor(Math.random()*postsArray.length)];
+    }
+    //console.log(featured);
+    if (featured != undefined) {
+        var featuredTitle = featured[0];
+        var featuredText = featured[1].substring(0, 50);
+        var featuredAuthor = featured[2];
+        var featuredImage = featured[5];
+        //console.log(featuredText);
+    }
+    
+    res.render("index.ejs", {featuredTitle: featuredTitle,
+        featuredText: featuredText,
+        featuredAuthor: featuredAuthor,
+        featuredImage: featuredImage,
          postsArray: postsArray});
-         console.log(postsArray);
+         //console.log(postsArray);
+         oldFeatured = featured;
 });
 
 // Compose a blog post
@@ -49,7 +69,7 @@ app.post("/submit", (req, res) => {
     date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
 
     // log the image file that was uploaded
-    console.log(req.files);
+    //console.log(req.files);
 
     // Get file that was uploaded to our "image" form field
     const { image } = req.files;
@@ -71,6 +91,7 @@ app.post("/submit", (req, res) => {
         req.body["category"]
     ];
     postsArray.push(post);
+
     res.redirect("/");
 });
 
@@ -93,8 +114,8 @@ app.get("/posts/:test", (req, res) => {
             // Convert title to lower case
             postsArray[i][0] =  _.lowerCase(postsArray[i][0]);
 
-            console.log(postsArray[i][0]);
-            console.log(requestedTitle);
+            //console.log(postsArray[i][0]);
+            //console.log(requestedTitle);
 
              // Check if postsArray includes the requestedTitle
             if (postsArray[i][0].includes(requestedTitle)) {
