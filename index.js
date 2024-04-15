@@ -1,12 +1,18 @@
 import express from "express";
 import bodyParser from "body-parser";
 import _ from 'lodash';
+import fs from 'fs';
+
+import fileUpload from 'express-fileupload';
 
 const app = express();
 const port = 3000;
 
-const homeContent = "Ron Miller"
+const homeContent = "Horn Miller"
 const previewContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+
+// Use the express-fileupload middleware
+app.use(fileUpload());
 
 // Set static directories for "/" and "/posts" routes
 app.use('/', express.static("public/"));
@@ -42,7 +48,27 @@ app.post("/submit", (req, res) => {
     time = new Date().toLocaleTimeString('default', {timeStyle: 'short'});
     date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
 
-    imagePath = 'images/rex.jpeg'
+    // log the image file that was uploaded
+    console.log(req.files);
+
+    // Get file that was uploaded to our "image" form field
+    const { image } = req.files;
+
+    // Move the uploaded image to our upload folder
+    image.mv('public/images/' + image.name);
+    
+    //imagePath = 'images/rex.jpeg'
+    imagePath = 'images/' + image.name
+    //console.log(imagePath);
+
+    // Check if image is in the correct folder
+    fs.access(imagePath, fs.constants.F_OK, (err) => {
+        if (err) {
+          console.error('File does not exist');
+        } else {
+          console.log('File exists');
+        }
+      });
 
     const post = [
         req.body["title"],
