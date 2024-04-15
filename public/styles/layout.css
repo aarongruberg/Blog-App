@@ -73,6 +73,12 @@ p {
     font-weight: 600;
 }
 
+.post-category {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: normal;
+    font-weight: 400;
+}
+
 .post-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;

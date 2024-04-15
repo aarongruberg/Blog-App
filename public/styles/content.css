@@ -9,13 +9,14 @@ body {
   }
 
 svg {
-    height: 20px;
+    height: 17px;
     width: 20px;
 }
 
 .navbar-toggler {
   border: none !important;
   outline: none !important;
+  padding-right: 0;
 }
 
 @media all and (min-width: 992px) {
@@ -40,7 +41,22 @@ svg {
     }
   }
 
- 
+  @media only screen and (max-width: 767px) {
+    .container {
+        width: 100%; /* Ensures container takes full width */
+        padding: 0; /* Optional: removes padding if any */
+    }
+
+    .row {
+        width: 100%; /* Ensures all rows take full width of the container */
+        margin: 0; /* Ensures rows align properly without additional spacing */
+    }
+
+    .row.featured, .row.line {
+        padding: 0; /* Ensures padding does not affect inner content width */
+    }
+}
+
   @media all and (max-width: 767px) {
     .navbar.fixed-top.bg-white.navbar-light {
        padding-top: 0px;
@@ -61,7 +77,7 @@ svg {
   @media all and (max-width: 767px) {
     .col-7.featured {
        padding-top: 83px;
-       padding-left: 2%;
+       padding-left: 4%;
        padding-right: 17%;
        width: auto;
     }
@@ -70,10 +86,10 @@ svg {
   @media all and (max-width: 767px) {
     .col-12.featured{
         justify-content: center;
-        padding-left: 2%;
-        padding-right: 2%;
+        padding-left: 4%;
+        padding-right: 7%;
         padding-bottom: 0% !important;
-        height: 190px;
+        height: 216.97px;
     }
   }
 
@@ -88,7 +104,7 @@ svg {
     .col-12.latest {        
         justify-content: left;
         padding-top: 0% !important;
-        padding-left: 3%;
+        padding-left: 0;
         padding-bottom: 1%;
         width: 100%;
     }
@@ -99,17 +115,27 @@ svg {
         padding-top: 5% !important;
     }
   }
-  
+
+  @media all and (max-width: 767px) {
+    .row.line {        
+        padding-left: 4%;
+        padding-right: 4%;
+        margin-left: 0;
+    }
+  }
+
   @media all and (max-width: 767px) {
     .col-12.line {        
-        padding-left: 3%;
+        padding-left: 0;
+        padding-right: 0;
     }
   }
 
   @media all and (max-width: 767px) {
     .row.latest {   
         padding-top: 2% !important;
-        padding-left: 0px !important;
+        padding-left: 2% !important;
+        padding-right: 2% !important;
         
     }
   }
@@ -117,6 +143,13 @@ svg {
   @media all and (max-width: 767px) {
     .previewTitle {   
         padding-right: 0% !important;
+        
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .preview-datetime {   
+        margin-bottom: 3%;
         
     }
   }
@@ -163,17 +196,34 @@ svg {
 
   @media all and (max-width: 767px) {
     .row.post-title {
-      padding-left: 7% !important;
-      padding-right: 7% !important;
+      padding-left: 10% !important;
+      padding-right: 10% !important;
     }
   }
+
+  @media all and (max-width: 767px) {
+    .post-category {
+      padding-top: 22%;
+      padding-left: 0% !important;
+      padding-right: 0% !important;
+      margin-bottom: 0 !important;
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .post-title {
+      padding-top: 2% !important;
+      padding-left: 0% !important;
+      padding-right: 0% !important;
+    }
+  }
+
 
   @media all and (max-width: 767px) {
     .post-title {
       padding-top: 16%;
       padding-left: 0% !important;
       padding-right: 0% !important;
-      max-width: 324px;
     }
   }
 
@@ -202,8 +252,8 @@ svg {
   @media all and (max-width: 767px) {
     .row.post-image {
       margin-left: 0 !important;
-      padding-left: 4% !important;
-      padding-right: 4% !important;
+      padding-left: 10% !important;
+      padding-right: 10% !important;
     }
   }
 
@@ -220,8 +270,8 @@ svg {
   
   @media all and (max-width: 767px) {
     .row.post-content {
-      padding-left: 7% !important;
-      padding-right: 7% !important;
+      padding-left: 10% !important;
+      padding-right: 10% !important;
     }
   }
 
@@ -240,7 +290,7 @@ svg {
 }
 
 .logo {
-    color:#32de84 !important;
+    color: #00cf6e !important;
 }
 
 .nav-link.join {
@@ -275,6 +325,7 @@ a:hover {
 .featured-author {
     padding-bottom: 0px;
     margin-bottom: 10px;
+    opacity: 0.85;
 }
 
 .col-12 {
@@ -316,13 +367,25 @@ a {
 }
 
 .preview-category {
-  color: #32de84;
-  margin-bottom: 0;
+  color: #2abf71;
+  margin-bottom: 2%;
+  font-size: 10pt;
+  line-height: 10pt;
+  height: auto;
+}
+
+.post-category {
+  color: #2abf71;
+}
+
+.preview-title-text {
+  margin-bottom: 2%;
 }
 
 .preview-author {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 2%;
+    opacity: 0.75;
 }
 
 .preview-datetime {
@@ -369,7 +432,7 @@ a {
 }
 
 .row.camera-icon {
-  padding-left: 12%;
+  padding-left: 15%;
   padding-top: 3.5%;
 }
 

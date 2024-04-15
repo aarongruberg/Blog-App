@@ -91,7 +91,8 @@ app.get("/posts/:test", (req, res) => {
                     author: author,
                     time: postsArray[i][3],
                     date: postsArray[i][4],
-                    imagePath: postsArray[i][5]
+                    imagePath: postsArray[i][5],
+                    category: postsArray[i][6]
                 });
             }
           }
