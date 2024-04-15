@@ -61,15 +61,6 @@ app.post("/submit", (req, res) => {
     imagePath = 'images/' + image.name
     //console.log(imagePath);
 
-    // Check if image is in the correct folder
-    fs.access(imagePath, fs.constants.F_OK, (err) => {
-        if (err) {
-          console.error('File does not exist');
-        } else {
-          console.log('File exists');
-        }
-      });
-
     const post = [
         req.body["title"],
         req.body["content"],
