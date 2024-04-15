@@ -1,7 +1,13 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-      "Name": "agruberg/dinocrunch:v1.21",
+<<<<<<< HEAD
+      "Name": "agruberg/dinocrunch:v1.2",
+||||||| f9c5e2e
+      "Name": "agruberg/dinocrunch",
+=======
+      "Name": "agruberg/dinocrunch:v1.2",
+>>>>>>> 1e4ac90a486b92a8dcd5d80860c3f6c65ff49f2e
       "Update": "true"
     },
     "Ports": [
