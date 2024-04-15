@@ -57,7 +57,7 @@ app.post("/submit", (req, res) => {
     // Move the uploaded image to our upload folder
     image.mv('public/images/' + image.name);
     
-    //imagePath = 'images/rex.jpeg'
+    //imagePath is relatative to public folder
     imagePath = 'images/' + image.name
     //console.log(imagePath);
 
