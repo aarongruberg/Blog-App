@@ -22,9 +22,11 @@
         </div>
     </div>
 
-    
+    <!--Loop through the posts and add them to the div tags-->
+    <!--"..." is used to make a copy of the array before reversing the order-->
+    <!--Made a copy just in case it's helpful to have the original array structure later-->
     <% if (locals.postsArray) { %>
-        <% postsArray.forEach(function(post) { %>
+        <% [...postsArray].reverse().forEach(function(post) { %>
             
             <div class="row line">
                 <div class="col-12 line">
