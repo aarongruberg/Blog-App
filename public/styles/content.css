@@ -82,8 +82,8 @@ svg {
 
   @media all and (max-width: 767px) {
     .col-7.featured {
-       padding-top: 83px;
-       padding-left: 4%;
+       padding-top: 10%;
+       padding-left: 4.5%;
        padding-right: 17%;
        width: auto;
     }
@@ -92,7 +92,7 @@ svg {
   @media all and (max-width: 767px) {
     .col-12.featured{
         justify-content: center;
-        padding-left: 4%;
+        padding-left: 4.5%;
         padding-right: 7%;
         padding-bottom: 0% !important;
         height: 216.97px;
@@ -124,8 +124,8 @@ svg {
 
   @media all and (max-width: 767px) {
     .row.line {        
-        padding-left: 4%;
-        padding-right: 4%;
+        padding-left: 4.5%;
+        padding-right: 4.5%;
         margin-left: 0;
     }
   }
@@ -182,6 +182,33 @@ svg {
         float: right !important;
         padding-right: 7% !important;
         
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .featured-label {   
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 6%;
+      padding-bottom: 1%;
+      margin-bottom: 0;
+        
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .col-12.featured-preview {   
+      padding-left: 2.5%;
+      padding-right: 0;
+        
+    }
+  }
+  
+  @media all and (max-width: 767px) {
+    .featured-thumbnail {   
+        width: 386.75px !important; 
+        height: 189.2px !important;
+        object-fit: cover;
     }
   }
 
@@ -308,8 +335,14 @@ a:hover {
 }
 
 .featured-title {
-    padding-bottom: 20px;
+    padding-bottom: 1%;
  }
+
+.featured-subtitle {
+  padding-top: 0;
+  padding-bottom: 1.5%;
+  margin-bottom: 2%;
+}
 
 .profile {
   height: 255px;
@@ -378,6 +411,10 @@ a {
   font-size: 10pt;
   line-height: 10pt;
   height: auto;
+}
+
+.featured-label {
+  color: #2abf71;
 }
 
 .post-category {

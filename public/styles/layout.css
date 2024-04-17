@@ -31,10 +31,9 @@
         font-weight: 800;
         font-size: 21pt !important;
         line-height: 1;
-        letter-spacing: -1px;
+        letter-spacing: -2px;
     }
   }
-
 
 h1, h2, h4, h5, h6 {
     font-family: 'Open Sans', sans-serif;
@@ -44,12 +43,20 @@ h1, h2, h4, h5, h6 {
 .featured-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
-    font-size: 25pt;
+    font-size: 32pt;
+    letter-spacing: -2px;
+}
+
+.featured-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13.5pt;
+    opacity: 0.4;
 }
 
 .featured-author {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
+    opacity: 0.8 !important;
 }
 
 p {
@@ -63,7 +70,7 @@ p {
 
 .preview-title-text {
     font-family: 'Open Sans', sans-serif;
-    letter-spacing: -1px !important;
+    letter-spacing: -1.5px !important;
     font-weight: 600;
     font-size: 16pt;
 }
@@ -71,6 +78,7 @@ p {
 .preview-author {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
+    opacity: 0.8 !important;
 }
 
 .post-category {
@@ -82,7 +90,7 @@ p {
 .post-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
-    font-size: 20pt;
+    font-size: 21pt;
     letter-spacing: -2px;
 }
 
@@ -91,6 +99,7 @@ p {
     font-weight: 600;
     font-size: 10pt;
     letter-spacing: normal;
+    opacity: 0.8 !important;
 }
 
 .green-slash {

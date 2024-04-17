@@ -7,7 +7,7 @@
     <div class="row featured">
         <div class="col-7 featured">
             <h2 class="featured-title"> <%= featuredTitle %> </h2>
-            <p class="featured-text"> <%= "'" + featuredText + "'" %> </p>
+            <p class="featured-subtitle"> <%= featuredSubtitle %> </p>
             <p class="featured-author"> <%= featuredAuthor %> </p>
         </div>
         <div class="col-12 col-md-6 featured">
@@ -32,25 +32,42 @@
                 </div>
             </div>
 
-            <a class="preview-row" href="/posts/<%= post[0] %>">
-            <div class="row latest">
-                <div class="col-8 col-md-3 previewTitle">
-                    <p class="preview-category"> <%= post[6] %> </p>
-                    <h5 class="preview-title-text"> <%= post[0] %> </h5>
-                    <p class="preview-author"> <%= post[2] %> </p>
-                    <p class="preview-datetime text-muted">  <%= post[3] %> &#x2022; <%= post[4] %> </p>
-                </div>
-                <div class="col-3 text-muted summary">
-                    <p> <%= post[1].substring(0, 170) + "..." %> 
+            <% if (post[0] == featuredTitle) { %>
+
+                <a class="preview-row" href="/posts/<%= post[0] %>">
+                    <div class="row latest">
+                        <div class="col-12 featured-preview">
+                            <img class="featured-thumbnail" src= "<%= post[5] %>" alt="sf profile">
+                            <h6 class="featured-label">Featured Article</h6>
+                            <h5 class="preview-title-text"> <%= post[0] %> </h5>
+                            <p class="preview-author"> <%= post[2] %> </p>
+                            <p class="preview-datetime text-muted">  <%= post[3] %> &#x2022; <%= post[4] %> </p>
+                        </div>
+                    </div>
+                    </a> 
+            
+            <% } else { %>
+
+                <a class="preview-row" href="/posts/<%= post[0] %>">
+                <div class="row latest">
+                    <div class="col-8 col-md-3 previewTitle">
+                        <p class="preview-category"> <%= post[6] %> </p>
+                        <h5 class="preview-title-text"> <%= post[0] %> </h5>
+                        <p class="preview-author"> <%= post[2] %> </p>
+                        <p class="preview-datetime text-muted">  <%= post[3] %> &#x2022; <%= post[4] %> </p>
+                    </div>
+                    <div class="col-3 text-muted summary">
+                        <p> <%= post[1].substring(0, 170) + "..." %> 
+                            
+                        </p>
                         
-                    </p>
-                    
+                    </div>
+                    <div class="col-4 col-md-3 previewImage">
+                        <img class="thumbnail" src= "<%= post[5] %>" alt="sf profile">
+                    </div>
                 </div>
-                <div class="col-4 col-md-3 previewImage">
-                    <img class="thumbnail" src= "<%= post[5] %>" alt="sf profile">
-                </div>
-            </div>
-            </a> 
+                </a> 
+            <% } %>
         <%  }) %>
    <% } %>
 

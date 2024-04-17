@@ -42,14 +42,15 @@ app.get("/", (req, res) => {
     //console.log(featured);
     if (featured != undefined) {
         var featuredTitle = featured[0];
-        var featuredText = featured[1].substring(0, 50);
+        var featuredSubtitle = featured[7];
         var featuredAuthor = featured[2];
         var featuredImage = featured[5];
-        //console.log(featuredText);
+        //console.log(featuredSubtitle);
+        //console.log(featuredAuthor);
     }
     
     res.render("index.ejs", {featuredTitle: featuredTitle,
-        featuredText: featuredText,
+        featuredSubtitle: featuredSubtitle,
         featuredAuthor: featuredAuthor,
         featuredImage: featuredImage,
          postsArray: postsArray});
@@ -88,7 +89,8 @@ app.post("/submit", (req, res) => {
         time,
         date,
         imagePath,
-        req.body["category"]
+        req.body["category"],
+        req.body["subtitle"]
     ];
     postsArray.push(post);
 
