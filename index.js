@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
             pinnedArray.push(postsArray[index]);
         }
     }
-    console.log(pinnedArray);
+    //console.log(pinnedArray);
     
     res.render("index.ejs", {featuredTitle: featuredTitle,
         featuredSubtitle: featuredSubtitle,
@@ -128,14 +128,16 @@ app.get("/posts/:test", (req, res) => {
             // Author name
             const author = postsArray[i][2];
 
-            // Convert title to lower case
-            postsArray[i][0] =  _.lowerCase(postsArray[i][0]);
+            // Create a copy of postArray title element and 
+            // convert that copy of title to lower case
+            var copyTitle = postsArray[i][0]
+            copyTitle =  _.lowerCase(copyTitle);
 
-            //console.log(postsArray[i][0]);
+            //console.log(copyTitle);
             //console.log(requestedTitle);
 
              // Check if postsArray includes the requestedTitle
-            if (postsArray[i][0].includes(requestedTitle)) {
+            if (copyTitle.includes(requestedTitle)) {
 
                 //console.log("match found");
 

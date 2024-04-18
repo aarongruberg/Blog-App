@@ -1,6 +1,6 @@
 html,
 body {
-  height: 5000px;
+  height: auto;
 }
 
 .navbar.fixed-top.bg-white.navbar-light {
@@ -249,7 +249,7 @@ svg {
   @media all and (max-width: 767px) {
     .col-12.featured-preview {   
       padding-left: 2.5%;
-      padding-right: 0;
+      padding-right: 2.5%;
         
     }
   }
