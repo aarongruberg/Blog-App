@@ -3,6 +3,8 @@
 <body>
 
 <div class="container">
+    
+    <!--Featured Article-->
     <a class="preview-row" href="/posts/<%= featuredTitle %>">
     <div class="row featured">
         <div class="col-7 featured">
@@ -16,6 +18,45 @@
     </div>
     </a>
 
+    <div class="row line">
+        <div class="col-12 featured-line">
+            <hr>
+        </div>
+    </div>
+
+    <!--Pinned Articles-->
+    <!--Loop through pinnedArray-->
+    <% if (locals.pinnedArray) { %>
+        <% pinnedArray.forEach(function(pinnedArticle, index) { %>
+
+            <% if (index == pinnedArray.length - 1) { %>
+                <a class="preview-row" href="/posts/<%= pinnedArticle[0] %>">
+                    <div class="row latest">
+                        <div class="col-11 featured-preview">
+                            <p class="preview-category"> <%= pinnedArticle[6] %> </p>
+                            <h5 class="preview-title-text"> <%= pinnedArticle[0] %> </h5>
+                            <p class="preview-author"> <%= pinnedArticle[2] %> </p>
+                            <hr class="thick-line">
+                        </div>
+                    </div>
+                </a> 
+            <% } else { %>
+                <a class="preview-row" href="/posts/<%= pinnedArticle[0] %>">
+                    <div class="row latest">
+                        <div class="col-11 featured-preview">
+                            <p class="preview-category"> <%= pinnedArticle[6] %> </p>
+                            <h5 class="preview-title-text"> <%= pinnedArticle[0] %> </h5>
+                            <p class="preview-author"> <%= pinnedArticle[2] %> </p>
+                            <hr class="thin-line">
+                        </div>
+                    </div>
+                </a> 
+            <% } %>
+
+        <%  }) %>
+    <% } %>
+
+    <!--Latest Articles-->
     <div class="row line">
         <div class="col-12 latest">
             <h6 class="latestTitle">The Latest</h6>

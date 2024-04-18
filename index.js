@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '2000kb'}));
 var postsArray = [];
 var featured = 0;
 var oldFeatured = 0;
+var pinned = 0;
 
 // Date and time
 let date = '';
@@ -48,13 +49,27 @@ app.get("/", (req, res) => {
         //console.log(featuredSubtitle);
         //console.log(featuredAuthor);
     }
+
+    let pinnedArray = [];
+    let chosenIndices = new Set();
+
+    while (pinnedArray.length < 4 && pinnedArray.length < postsArray.length) {
+        let index = Math.floor(Math.random() * postsArray.length);
+        if (!chosenIndices.has(index)) {
+            chosenIndices.add(index);
+            pinnedArray.push(postsArray[index]);
+        }
+    }
+    console.log(pinnedArray);
     
     res.render("index.ejs", {featuredTitle: featuredTitle,
         featuredSubtitle: featuredSubtitle,
         featuredAuthor: featuredAuthor,
         featuredImage: featuredImage,
-         postsArray: postsArray});
+        pinnedArray: pinnedArray,
+        postsArray: postsArray});
          //console.log(postsArray);
+
          oldFeatured = featured;
 });
 
