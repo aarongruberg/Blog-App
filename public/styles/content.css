@@ -563,3 +563,27 @@ a {
     padding-left: 175px;
     padding-right: 26px;
 }
+
+.admin-create-post-button{
+  padding-top: 25%;
+  padding-left: 4%;
+  height: auto;
+  width: auto;
+}
+
+.admin-edit-post-button{
+  padding-top: 25%;
+  padding-left: 4%;
+  height: auto;
+  width: auto;
+}
+
+.admin-featured{
+  padding-top: 0;
+}
+
+.editpage-post-title-info{
+  padding-left: 0;
+  height: auto;
+  width: auto;
+}

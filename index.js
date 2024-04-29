@@ -1,27 +1,38 @@
 import express from "express";
 import bodyParser from "body-parser";
+//import _, { result } from 'lodash';
 import _ from 'lodash';
 import fileUpload from 'express-fileupload';
+import pg from "pg";
 
+const { result } = _;
 const app = express();
 const port = 3000;
 
-const homeContent = "Horn Miller"
-const previewContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+const db = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "dinocrunch",
+  password: "dorian",
+  port: 5432
+});
+db.connect();
 
 // Use the express-fileupload middleware
 app.use(fileUpload());
 
 // Set static directories for "/" and "/posts" routes
 app.use('/', express.static("public/"));
-app.use('/posts', express.static('public'))
+app.use('/posts', express.static('public/'));
+app.use('/admin', express.static('public/'));
+app.use('/admin/posts', express.static('public/'));
 
 app.use(bodyParser.urlencoded({ extended: true, limit: '2000kb'}));
 
-var postsArray = [];
 var featured = 0;
 var oldFeatured = 0;
 var pinned = 0;
+let articles = [];
 
 // Date and time
 let date = '';
@@ -31,21 +42,30 @@ let time = '';
 let imagePath = '';
 
 // Homepage route
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+    // Read from db
+    try {
+        let result = await db.query("select * from articles order by id asc");
+        articles = result.rows;
+        //console.log(articles);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
 
    //Set a random post to be featured
-   featured = postsArray[Math.floor(Math.random()*postsArray.length)];
+   featured = articles[Math.floor(Math.random()*articles.length)];
    //console.log(featured);
 
-   while (featured === oldFeatured && postsArray.length > 1) {
-    featured = postsArray[Math.floor(Math.random()*postsArray.length)];
+   while (featured === oldFeatured && articles.length > 1) {
+    featured = articles[Math.floor(Math.random()*articles.length)];
     }
     //console.log(featured);
     if (featured != undefined) {
-        var featuredTitle = featured[0];
-        var featuredSubtitle = featured[7];
-        var featuredAuthor = featured[2];
-        var featuredImage = featured[5];
+        var featuredTitle = featured.title;
+        var featuredSubtitle = featured.subtitle;
+        var featuredAuthor = featured.author;
+        var featuredImage = featured.image_path;
         //console.log(featuredSubtitle);
         //console.log(featuredAuthor);
     }
@@ -53,11 +73,12 @@ app.get("/", (req, res) => {
     let pinnedArray = [];
     let chosenIndices = new Set();
 
-    while (pinnedArray.length < 4 && pinnedArray.length < postsArray.length) {
-        let index = Math.floor(Math.random() * postsArray.length);
+    //Pin a maximum of 4 random articles
+    while (pinnedArray.length < 4 && pinnedArray.length < articles.length) {
+        let index = Math.floor(Math.random() * articles.length);
         if (!chosenIndices.has(index)) {
             chosenIndices.add(index);
-            pinnedArray.push(postsArray[index]);
+            pinnedArray.push(articles[index]);
         }
     }
     //console.log(pinnedArray);
@@ -67,19 +88,72 @@ app.get("/", (req, res) => {
         featuredAuthor: featuredAuthor,
         featuredImage: featuredImage,
         pinnedArray: pinnedArray,
-        postsArray: postsArray});
-         //console.log(postsArray);
+        articles: articles});
+         //console.log(articles);
+
+         oldFeatured = featured;
+});
+
+// Admin Console Homepage
+app.get("/admin", async (req, res) => {
+    // Read from db
+    try {
+        let result = await db.query("select * from articles order by id asc");
+        articles = result.rows;
+        //console.log(articles);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+
+   //Set a random post to be featured
+   featured = articles[Math.floor(Math.random()*articles.length)];
+   //console.log(featured);
+
+   while (featured === oldFeatured && articles.length > 1) {
+    featured = articles[Math.floor(Math.random()*articles.length)];
+    }
+    //console.log(featured);
+    if (featured != undefined) {
+        var featuredTitle = featured.title;
+        var featuredSubtitle = featured.subtitle;
+        var featuredAuthor = featured.author;
+        var featuredImage = featured.image_path;
+        //console.log(featuredSubtitle);
+        //console.log(featuredAuthor);
+    }
+
+    let pinnedArray = [];
+    let chosenIndices = new Set();
+
+    //Pin a maximum of 4 random articles
+    while (pinnedArray.length < 4 && pinnedArray.length < articles.length) {
+        let index = Math.floor(Math.random() * articles.length);
+        if (!chosenIndices.has(index)) {
+            chosenIndices.add(index);
+            pinnedArray.push(articles[index]);
+        }
+    }
+    //console.log(pinnedArray);
+    
+    res.render("admin.ejs", {featuredTitle: featuredTitle,
+        featuredSubtitle: featuredSubtitle,
+        featuredAuthor: featuredAuthor,
+        featuredImage: featuredImage,
+        pinnedArray: pinnedArray,
+        articles: articles});
+         //console.log(articles);
 
          oldFeatured = featured;
 });
 
 // Compose a blog post
-app.post("/compose", (req, res) => {
+app.post("/admin/compose", (req, res) => {
     res.render("create.ejs");
   });
 
 // Submit your blog post
-app.post("/submit", (req, res) => {
+app.post("/admin/submit", async (req, res) => {
 
     time = new Date().toLocaleTimeString('default', {timeStyle: 'short'});
     date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
@@ -97,19 +171,17 @@ app.post("/submit", (req, res) => {
     imagePath = 'images/' + image.name
     //console.log(imagePath);
 
-    const post = [
-        req.body["title"],
-        req.body["content"],
-        req.body["your-name"],
-        time,
-        date,
-        imagePath,
-        req.body["category"],
-        req.body["subtitle"]
-    ];
-    postsArray.push(post);
+    // Add article to db
+    try {
+      await db.query("insert into articles (image_path, title, subtitle, article_content, author, category, time, date)"
+      + "values ($1, $2, $3, $4, $5, $6, $7, $8)", 
+      [imagePath, req.body["title"], req.body["subtitle"], req.body["content"], req.body["your-name"], req.body["category"], time, date]);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
 
-    res.redirect("/");
+    res.redirect("/admin");
 });
 
 // Navigate to a specific blog post
@@ -119,24 +191,24 @@ app.get("/posts/:test", (req, res) => {
     const requestedTitle = _.lowerCase(req.params.test);
 
     // Convert postArray title to lowercase using Lodash
-    if (postsArray != undefined) {
-        for (let i = 0; i < postsArray.length; i++) {
+    if (articles != undefined) {
+        for (let i = 0; i < articles.length; i++) {
 
             // Keep original title to pass to post.ejs file
-            const title = postsArray[i][0];
+            const title = articles[i].title;
 
             // Author name
-            const author = postsArray[i][2];
+            const author = articles[i].author;
 
             // Create a copy of postArray title element and 
             // convert that copy of title to lower case
-            var copyTitle = postsArray[i][0]
+            var copyTitle = articles[i].title;
             copyTitle =  _.lowerCase(copyTitle);
 
             //console.log(copyTitle);
             //console.log(requestedTitle);
 
-             // Check if postsArray includes the requestedTitle
+             // Check if articles includes the requestedTitle
             if (copyTitle.includes(requestedTitle)) {
 
                 //console.log("match found");
@@ -144,18 +216,130 @@ app.get("/posts/:test", (req, res) => {
                 // Send user to selected post
                 res.render("post.ejs", {
                     title: title, 
-                    content: postsArray[i][1],
+                    content: articles[i].article_content,
                     author: author,
-                    time: postsArray[i][3],
-                    date: postsArray[i][4],
-                    imagePath: postsArray[i][5],
-                    category: postsArray[i][6]
+                    time: articles[i].time,
+                    date: articles[i].date,
+                    imagePath: articles[i].image_path,
+                    category: articles[i].category
                 });
             }
           }
         
     }
 
+});
+
+//Admin view specific post
+app.get("/admin/posts/:test", (req, res) => {
+    
+    // Convert url input text to lowercase using Lodash
+    const requestedTitle = _.lowerCase(req.params.test);
+
+    // Convert postArray title to lowercase using Lodash
+    if (articles != undefined) {
+        for (let i = 0; i < articles.length; i++) {
+
+            // Keep original title to pass to post.ejs file
+            const title = articles[i].title;
+
+            // Author name
+            const author = articles[i].author;
+
+            // Create a copy of postArray title element and 
+            // convert that copy of title to lower case
+            var copyTitle = articles[i].title;
+            copyTitle =  _.lowerCase(copyTitle);
+
+            //console.log(copyTitle);
+            //console.log(requestedTitle);
+
+             // Check if articles includes the requestedTitle
+            if (copyTitle.includes(requestedTitle)) {
+
+                //console.log("match found");
+
+                // Send user to selected post
+                res.render("admin-post.ejs", {
+                    title: title, 
+                    content: articles[i].article_content,
+                    author: author,
+                    time: articles[i].time,
+                    date: articles[i].date,
+                    imagePath: articles[i].image_path,
+                    category: articles[i].category
+                });
+            }
+          }
+        
+    }
+
+});
+
+//Admin edit a post
+app.post("/admin/edit-post", async (req, res) => {
+    //Fetch article from db that matches the current article's title
+    let currentTitle = req.body.title;
+    let currentArticle = [];
+    try {
+        let result = await db.query("select * from articles where title = $1", [currentTitle]);
+        currentArticle = result.rows;
+        //console.log(currentArticle);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+
+    res.render("edit.ejs", {
+        currentArticle: currentArticle
+    });
+  });
+
+//Submit an edit
+app.post("/admin/submit-edit", async (req, res) => {
+
+    time = new Date().toLocaleTimeString('default', {timeStyle: 'short'});
+    date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
+
+    // log the image file that was uploaded
+    //console.log(req.files);
+
+    // Get file that was uploaded to our "image" form field
+    const { image } = req.files;
+
+    // Move the uploaded image to our upload folder
+    image.mv('public/images/' + image.name);
+    
+    //imagePath is relatative to public folder
+    imagePath = 'images/' + image.name
+    //console.log(imagePath);
+
+    // Need to get id of old current title, this is giving the changed current title!!
+    let originalTitle = req.body.originalTitle;
+    let currentId = 0;
+    //console.log(originalTitle);
+    try {
+        let result = await db.query("select * from articles where title = $1", [originalTitle]);
+        if (result.rows.length > 0) {
+            currentId = result.rows[0].id;
+            //console.log(currentId);
+        } else {
+            // Handle case where no rows were found (e.g., log a message, set a default value, etc.)
+            console.log("No article found with title:", originalTitle);
+        }
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+    //Update article where id matches current article's id
+    try {
+        let result = await db.query("update articles set image_path = $1, title = $2, subtitle = $3, article_content = $4, author = $5, category = $6, time = $7, date = $8 where id = $9", [imagePath, req.body["title"], req.body["subtitle"], req.body["content"], req.body["your-name"], req.body["category"], time, date, currentId]);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+
+    res.redirect("/admin");
 });
 
 //Run app

@@ -1,0 +1,48 @@
+<%- include("partials/header.ejs") %>
+
+
+<body>
+
+    <% if (locals.title && locals.content) { %>
+
+    <div class="container">
+        <!--Edit a Post-->
+        <form action="/admin/edit-post" method="POST" class="admin-edit-post-button">
+            <input type="hidden" name="title" value="<%= title %>">
+            <input type="hidden" name="content" value="<%= content %>">
+            <input type="hidden" name="author" value="<%= author %>">
+            <input type="hidden" name="time" value="<%= time %>">
+            <input type="hidden" name="date" value="<%= date %>">
+            <input type="hidden" name="imagePath" value="<%= imagePath %>">
+            <input type="hidden" name="category" value="<%= category %>">
+            <input type="submit" class="btn btn-primary" href="#" role="button" value="Edit Post">
+        </form>
+        <div class="row post-title">
+            <div class="col-12 col-md-9 editpage-post-title-info">
+                <p class="post-category"> <%= category %> </p>
+                <h1 class="post-title"> <%= title %> </h1>
+                <p class="post-author"> <%= author %> &nbsp; <span class="green-slash"> / </span> &nbsp; <span class="post-datetime text-muted"> <%= time %> &#x2022; <%= date %> </span> </p>
+                
+            </div>
+        </div>
+
+        <div class="row post-image">
+            <img class="post-image" src= "<%= imagePath %>" alt="sf profile">
+        </div>
+
+        <div class="row camera-icon">
+            <img class="camera-icon-image" src= "images/camera.png" alt="sf profile">
+            <p class="image-credits"> <span class="image-credits-bold">Image Credits:</span> StegoStock Images</p>
+        </div>
+
+        <div class="row post-content">
+            <div class="col-12 col-md-8 content">
+                <p class="post-content-text"> <%= content %> </p>
+            </div>
+        </div>
+           
+    </div>
+
+<% } %>
+
+</body>

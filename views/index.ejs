@@ -30,23 +30,23 @@
         <% pinnedArray.forEach(function(pinnedArticle, index) { %>
 
             <% if (index == pinnedArray.length - 1) { %>
-                <a class="preview-row" href="/posts/<%= pinnedArticle[0] %>">
+                <a class="preview-row" href="/posts/<%= pinnedArticle.title %>">
                     <div class="row latest">
                         <div class="col-11 featured-preview">
-                            <p class="preview-category"> <%= pinnedArticle[6] %> </p>
-                            <h5 class="preview-title-text pinned"> <%= pinnedArticle[0] %> </h5>
-                            <p class="preview-author"> <%= pinnedArticle[2] %> </p>
+                            <p class="preview-category"> <%= pinnedArticle.category %> </p>
+                            <h5 class="preview-title-text pinned"> <%= pinnedArticle.title %> </h5>
+                            <p class="preview-author"> <%= pinnedArticle.author %> </p>
                             <hr class="thick-line">
                         </div>
                     </div>
                 </a> 
             <% } else { %>
-                <a class="preview-row" href="/posts/<%= pinnedArticle[0] %>">
+                <a class="preview-row" href="/posts/<%= pinnedArticle.title %>">
                     <div class="row latest">
                         <div class="col-11 featured-preview">
-                            <p class="preview-category"> <%= pinnedArticle[6] %> </p>
-                            <h5 class="preview-title-text pinned"> <%= pinnedArticle[0] %> </h5>
-                            <p class="preview-author"> <%= pinnedArticle[2] %> </p>
+                            <p class="preview-category"> <%= pinnedArticle.category %> </p>
+                            <h5 class="preview-title-text pinned"> <%= pinnedArticle.title %> </h5>
+                            <p class="preview-author"> <%= pinnedArticle.author %> </p>
                             <hr class="thin-line">
                         </div>
                     </div>
@@ -66,8 +66,8 @@
     <!--Loop through the posts and add them to the div tags-->
     <!--"..." is used to make a copy of the array before reversing the order-->
     <!--Made a copy just in case it's helpful to have the original array structure later-->
-    <% if (locals.postsArray) { %>
-        <% [...postsArray].reverse().forEach(function(post) { %>
+    <% if (locals.articles) { %>
+        <% [...articles].reverse().forEach(function(post) { %>
             
             <div class="row line">
                 <div class="col-12 line">
@@ -75,38 +75,38 @@
                 </div>
             </div>
 
-            <% if (post[0] == featuredTitle) { %>
+            <% if (post.title == featuredTitle) { %>
 
-                <a class="preview-row" href="/posts/<%= post[0] %>">
+                <a class="preview-row" href="/posts/<%= post.title %>">
                     <div class="row latest">
                         <div class="col-12 featured-preview">
-                            <img class="featured-thumbnail" src= "<%= post[5] %>" alt="sf profile">
+                            <img class="featured-thumbnail" src= "<%= post.image_path %>" alt="sf profile">
                             <h6 class="featured-label">Featured Article</h6>
-                            <h5 class="preview-title-text"> <%= post[0] %> </h5>
-                            <p class="preview-author"> <%= post[2] %> </p>
-                            <p class="preview-datetime text-muted">  <%= post[3] %> &#x2022; <%= post[4] %> </p>
+                            <h5 class="preview-title-text"> <%= post.title %> </h5>
+                            <p class="preview-author"> <%= post.author %> </p>
+                            <p class="preview-datetime text-muted">  <%= post.time %> &#x2022; <%= post.date %> </p>
                         </div>
                     </div>
                     </a> 
             
             <% } else { %>
 
-                <a class="preview-row" href="/posts/<%= post[0] %>">
+                <a class="preview-row" href="/posts/<%= post.title %>">
                 <div class="row latest">
                     <div class="col-8 col-md-3 previewTitle">
-                        <p class="preview-category"> <%= post[6] %> </p>
-                        <h5 class="preview-title-text"> <%= post[0] %> </h5>
-                        <p class="preview-author"> <%= post[2] %> </p>
-                        <p class="preview-datetime text-muted">  <%= post[3] %> &#x2022; <%= post[4] %> </p>
+                        <p class="preview-category"> <%= post.category %> </p>
+                        <h5 class="preview-title-text"> <%= post.title %> </h5>
+                        <p class="preview-author"> <%= post.author %> </p>
+                        <p class="preview-datetime text-muted">  <%= post.time %> &#x2022; <%= post.date %> </p>
                     </div>
                     <div class="col-3 text-muted summary">
-                        <p> <%= post[1].substring(0, 170) + "..." %> 
+                        <p> <%= post.article_content.substring(0, 170) + "..." %> 
                             
                         </p>
                         
                     </div>
                     <div class="col-4 col-md-3 previewImage">
-                        <img class="thumbnail" src= "<%= post[5] %>" alt="sf profile">
+                        <img class="thumbnail" src= "<%= post.image_path %>" alt="sf profile">
                     </div>
                 </div>
                 </a> 

@@ -1,0 +1,69 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 create-post-page-title">
+                <h1>Edit Post</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 create-post">
+                <form action="/admin/submit-edit" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="originalTitle" id="originalTitle">
+                    <input type="file" name="image" value="<%= currentArticle[0].image_path %>" >
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Title</label>
+                        <input type="text" class="form-control" name="title" value="<%= currentArticle[0].title %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Subtitle (optional)</label>
+                        <input type="text" class="form-control" name="subtitle" value="<%= currentArticle[0].subtitle %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Content</label>
+                        <textarea class="form-control content" name="content" rows="3"> <%= currentArticle[0].article_content %> </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Your Name</label>
+                        <input type="text" class="form-control" name="your-name" value="<%= currentArticle[0].author %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Category</label>
+                        <input type="text" class="form-control" name="category" value="<%= currentArticle[0].category %>">
+                    </div>
+                    <input type="submit" value="Submit Changes">
+                </form>          
+            </div>
+        </div>
+
+    </div>
+    <script>
+        // Wait for the page to load, then store the originalTitle value in session storage
+        // and set the hidden input tag with name "originalTitle" to the stored value of originalTitle
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Decode HTML text to prevent special characters in title from being converted to different values
+            // Create a new element equal to the original string value of originalTitle
+            function decodeHtmlEntities(text) {
+                var textArea = document.createElement('textarea');
+                textArea.innerHTML = text;
+                return textArea.value;
+            }
+            
+            // Store the original title in session storage when the page loads
+            sessionStorage.setItem('originalTitle', '<%= currentArticle[0].title %>');
+
+            // Retrieve the original title from session storage
+            let originalTitle = sessionStorage.getItem('originalTitle');
+
+            // Decode HTML entities
+            originalTitle = decodeHtmlEntities(originalTitle);
+
+            // Set the value of the hidden input field so it is temporarily stored 
+            // and can be referenced in /admin/submit-edit route
+            document.getElementById('originalTitle').value = originalTitle;
+        });
+    </script>
+</body>
+</html>

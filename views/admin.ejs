@@ -1,0 +1,125 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+
+<div class="container">
+    <!--Create a Post-->
+    <form action="/admin/compose" method="POST" class="admin-create-post-button">
+        <input type="submit" class="btn btn-primary" href="#" role="button" value="Create Post">
+      </form>
+    <!--Featured Article-->
+    <a class="preview-row" href="/admin/posts/<%= featuredTitle %>">
+    <div class="admin-featured">
+        <div class="col-7 featured">
+            <h2 class="featured-title"> <%= featuredTitle %> </h2>
+            <p class="featured-subtitle"> <%= featuredSubtitle %> </p>
+            <p class="featured-author"> <%= featuredAuthor %> </p>
+        </div>
+        <div class="col-12 col-md-6 featured">
+            <img class="profile" src="<%=featuredImage%>" alt="sf profile">
+        </div>
+    </div>
+    </a>
+
+    <div class="row line">
+        <div class="col-12 featured-line">
+            <hr>
+        </div>
+    </div>
+
+    <!--Pinned Articles-->
+    <!--Loop through pinnedArray-->
+    <% if (locals.pinnedArray) { %>
+        <% pinnedArray.forEach(function(pinnedArticle, index) { %>
+
+            <% if (index == pinnedArray.length - 1) { %>
+                <a class="preview-row" href="/admin/posts/<%= pinnedArticle.title %>">
+                    <div class="row latest">
+                        <div class="col-11 featured-preview">
+                            <p class="preview-category"> <%= pinnedArticle.category %> </p>
+                            <h5 class="preview-title-text pinned"> <%= pinnedArticle.title %> </h5>
+                            <p class="preview-author"> <%= pinnedArticle.author %> </p>
+                            <hr class="thick-line">
+                        </div>
+                    </div>
+                </a> 
+            <% } else { %>
+                <a class="preview-row" href="/admin/posts/<%= pinnedArticle.title %>">
+                    <div class="row latest">
+                        <div class="col-11 featured-preview">
+                            <p class="preview-category"> <%= pinnedArticle.category %> </p>
+                            <h5 class="preview-title-text pinned"> <%= pinnedArticle.title %> </h5>
+                            <p class="preview-author"> <%= pinnedArticle.author %> </p>
+                            <hr class="thin-line">
+                        </div>
+                    </div>
+                </a> 
+            <% } %>
+
+        <%  }) %>
+    <% } %>
+
+    <!--Latest Articles-->
+    <div class="row line">
+        <div class="col-12 latest">
+            <h6 class="latestTitle">The Latest</h6>
+        </div>
+    </div>
+
+    <!--Loop through the posts and add them to the div tags-->
+    <!--"..." is used to make a copy of the array before reversing the order-->
+    <!--Made a copy just in case it's helpful to have the original array structure later-->
+    <% if (locals.articles) { %>
+        <% [...articles].reverse().forEach(function(post) { %>
+            
+            <div class="row line">
+                <div class="col-12 line">
+                    <hr>
+                </div>
+            </div>
+
+            <% if (post.title == featuredTitle) { %>
+
+                <a class="preview-row" href="/admin/posts/<%= post.title %>">
+                    <div class="row latest">
+                        <div class="col-12 featured-preview">
+                            <img class="featured-thumbnail" src= "<%= post.image_path %>" alt="sf profile">
+                            <h6 class="featured-label">Featured Article</h6>
+                            <h5 class="preview-title-text"> <%= post.title %> </h5>
+                            <p class="preview-author"> <%= post.author %> </p>
+                            <p class="preview-datetime text-muted">  <%= post.time %> &#x2022; <%= post.date %> </p>
+                        </div>
+                    </div>
+                    </a> 
+            
+            <% } else { %>
+
+                <a class="preview-row" href="/admin/posts/<%= post.title %>">
+                <div class="row latest">
+                    <div class="col-8 col-md-3 previewTitle">
+                        <p class="preview-category"> <%= post.category %> </p>
+                        <h5 class="preview-title-text"> <%= post.title %> </h5>
+                        <p class="preview-author"> <%= post.author %> </p>
+                        <p class="preview-datetime text-muted">  <%= post.time %> &#x2022; <%= post.date %> </p>
+                    </div>
+                    <div class="col-3 text-muted summary">
+                        <p> <%= post.article_content.substring(0, 170) + "..." %> 
+                            
+                        </p>
+                        
+                    </div>
+                    <div class="col-4 col-md-3 previewImage">
+                        <img class="thumbnail" src= "<%= post.image_path %>" alt="sf profile">
+                    </div>
+                </div>
+                </a> 
+            <% } %>
+        <%  }) %>
+   <% } %>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+
