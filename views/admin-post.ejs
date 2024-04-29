@@ -6,17 +6,24 @@
     <% if (locals.title && locals.content) { %>
 
     <div class="container">
-        <!--Edit a Post-->
-        <form action="/admin/edit-post" method="POST" class="admin-edit-post-button">
-            <input type="hidden" name="title" value="<%= title %>">
-            <input type="hidden" name="content" value="<%= content %>">
-            <input type="hidden" name="author" value="<%= author %>">
-            <input type="hidden" name="time" value="<%= time %>">
-            <input type="hidden" name="date" value="<%= date %>">
-            <input type="hidden" name="imagePath" value="<%= imagePath %>">
-            <input type="hidden" name="category" value="<%= category %>">
-            <input type="submit" class="btn btn-primary" href="#" role="button" value="Edit Post">
-        </form>
+        <div class="edit-and-delete-buttons">
+            <!--Edit a Post-->
+            <form action="/admin/edit-post" method="POST" class="admin-edit-post-button">
+                <input type="hidden" name="title" value="<%= title %>">
+                <input type="hidden" name="content" value="<%= content %>">
+                <input type="hidden" name="author" value="<%= author %>">
+                <input type="hidden" name="time" value="<%= time %>">
+                <input type="hidden" name="date" value="<%= date %>">
+                <input type="hidden" name="imagePath" value="<%= imagePath %>">
+                <input type="hidden" name="category" value="<%= category %>">
+                <input type="submit" class="btn btn-primary" href="#" role="button" value="Edit Post">
+            </form>
+            <!--Delete a post-->
+            <form action="/admin/delete-post" method="POST" class="admin-delete-post-button">
+                <input type="hidden" name="title" value="<%= title %>">
+                <input type="submit" class="btn btn-primary admin-delete-button" href="#" role="button" value="Delete Post">
+            </form>
+        </div>
         <div class="row post-title">
             <div class="col-12 col-md-9 editpage-post-title-info">
                 <p class="post-category"> <%= category %> </p>

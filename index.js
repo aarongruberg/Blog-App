@@ -331,6 +331,7 @@ app.post("/admin/submit-edit", async (req, res) => {
       catch(err) {
         console.log(err.message);
       }
+    
     //Update article where id matches current article's id
     try {
         let result = await db.query("update articles set image_path = $1, title = $2, subtitle = $3, article_content = $4, author = $5, category = $6, time = $7, date = $8 where id = $9", [imagePath, req.body["title"], req.body["subtitle"], req.body["content"], req.body["your-name"], req.body["category"], time, date, currentId]);
@@ -341,6 +342,35 @@ app.post("/admin/submit-edit", async (req, res) => {
 
     res.redirect("/admin");
 });
+
+//Delete an Article
+app.post("/admin/delete-post", async (req, res) => {
+    //Fetch article from db that matches the current article's title
+    let currentTitle = req.body.title;
+    let currentId = 0;
+    try {
+        let result = await db.query("select * from articles where title = $1", [currentTitle]);
+        if (result.rows.length > 0) {
+            currentId = result.rows[0].id;
+            //console.log(currentId);
+        } else {
+            // Handle case where no rows were found (e.g., log a message, set a default value, etc.)
+            console.log("No article found with title:", currentTitle);
+        }
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+    try {
+        //Delete the article from db where id matches currentId
+        await db.query("delete from articles where id = $1", [currentId]);
+    }
+      catch(err){
+        console.log(err.message);
+      }
+    res.redirect("/admin");
+});
+
 
 //Run app
 app.listen(port, () => {

@@ -571,11 +571,29 @@ a {
   width: auto;
 }
 
+.edit-and-delete-buttons{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .admin-edit-post-button{
   padding-top: 25%;
   padding-left: 4%;
   height: auto;
-  width: auto;
+  width: fit-content;
+}
+
+.admin-delete-post-button{
+  padding-top: 25%;
+  padding-right: 4%;
+  height: auto;
+  width: fit-content;
+}
+
+.admin-delete-button{
+  background-color: red;
+  border-color: red;
 }
 
 .admin-featured{
