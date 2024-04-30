@@ -118,7 +118,8 @@ svg {
 
   @media all and (max-width: 767px) {
     .latestTitle {        
-        padding-top: 5% !important;
+        padding-top: 4% !important;
+        padding-bottom: 0;
     }
   }
 
@@ -126,6 +127,16 @@ svg {
     .row.line {        
         padding-left: 4.5%;
         padding-right: 4.5%;
+        padding-bottom: 3%;
+        margin-left: 0;
+    }
+  }
+
+  @media all and (max-width: 767px) {
+    .row.featured-line {        
+        padding-left: 4.5%;
+        padding-right: 4.5%;
+        padding-bottom: 0;
         margin-left: 0;
     }
   }
@@ -468,7 +479,7 @@ a {
 
 .preview-category {
   color: #2abf71;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
   font-size: 10pt;
   line-height: 10pt;
   height: auto;
@@ -484,6 +495,20 @@ a {
 
 .preview-title-text {
   margin-bottom: 2%;
+  width: 107%;
+  white-space: normal;
+}
+
+.preview-title-text.pinned {
+  margin-bottom: 2%;
+  width: 100%;
+  white-space: normal;
+}
+
+.preview-title-text.featured {
+  margin-bottom: 2%;
+  width: 100%;
+  white-space: normal;
 }
 
 .preview-author {
@@ -598,6 +623,11 @@ a {
   width: fit-content;
 }
 
+.admin-edit-button {
+  background-color: #0096FF;
+  border-color: #0096FF;
+}
+
 .admin-delete-button{
   background-color: red;
   border-color: red;
@@ -615,5 +645,6 @@ a {
 
 .category-page-title{
   padding-top: 20%;
+  padding-bottom: 4%;
   padding-left: 4%;
 }

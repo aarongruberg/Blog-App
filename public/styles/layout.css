@@ -94,44 +94,44 @@ p {
 
 .preview-category {
     font-family: 'AktivGrotesk-Regular', sans-serif;
-    font-size: 10pt;
+    font-size: 10pt !important;
 }
 
 .preview-title-text {
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: -1.5px !important;
+    font-family: 'AktivGrotesk-ExtraBold', sans-serif;
+    letter-spacing: -0.5px !important;
     font-weight: 600;
     font-size: 16pt;
 }
 
 .preview-title-text.pinned {
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: -1.5px !important;
+    font-family: 'AktivGrotesk-ExtraBold', sans-serif;
+    letter-spacing: -0.5px !important;
     font-weight: 600;
     font-size: 13pt;
 }
 
 .preview-author {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-SemiBold', sans-serif;
     font-weight: 600;
     opacity: 0.8 !important;
 }
 
 .post-category {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-Regular', sans-serif;
     letter-spacing: normal;
     font-weight: 400;
 }
 
 .post-title {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-ExtraBold', sans-serif;
     font-weight: 800;
     font-size: 21pt;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
 }
 
 .post-author {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-SemiBold', sans-serif;
     font-weight: 600;
     font-size: 10pt;
     letter-spacing: normal;
@@ -139,31 +139,32 @@ p {
 }
 
 .green-slash {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-Regular', sans-serif;
     font-size: 8pt;
     font-weight: 400;
 }
 
 .post-datetime {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-Regular', sans-serif;
     font-size: 8pt;
     font-weight: 400;
 }
 
 .image-credits-bold {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-Bold', sans-serif;
     font-weight: 600;
     font-size: 9.5pt;
 }
 
 
 .post-content-text {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-Regular', sans-serif;
     font-size: 11.5pt;
     line-height: 2;
 }
 
 .category-page-title {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-ExtraBold', sans-serif;
+    font-weight: 800;
     font-size: 28pt;
 }
