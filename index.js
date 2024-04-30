@@ -21,11 +21,12 @@ db.connect();
 // Use the express-fileupload middleware
 app.use(fileUpload());
 
-// Set static directories for "/" and "/posts" routes
+// Set static directories for "/" and other routes
 app.use('/', express.static("public/"));
 app.use('/posts', express.static('public/'));
 app.use('/admin', express.static('public/'));
 app.use('/admin/posts', express.static('public/'));
+app.use('/categories', express.static('public/'));
 
 app.use(bodyParser.urlencoded({ extended: true, limit: '2000kb'}));
 
