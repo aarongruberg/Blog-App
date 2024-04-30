@@ -1,3 +1,31 @@
+@font-face {
+    font-family: 'AktivGrotesk-ExtraBold';
+    src: url('/fonts/AktivGrotesk/AktivGrotesk_extra-bold.otf') format('opentype');
+    font-weight: 800; /* Extra-Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AktivGrotesk-Bold';
+    src: url('/fonts/AktivGrotesk/AktivGrotesk_bold.otf') format('opentype');
+    font-weight: 800; /* Extra-Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AktivGrotesk-SemiBold';
+    src: url('/fonts/AktivGrotesk/AktivGrotesk_semibold.otf') format('opentype');
+    font-weight: 800; /* Extra-Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AktivGrotesk-Regular';
+    src: url('/fonts/AktivGrotesk/AktivGrotesk_regular.otf') format('opentype');
+    font-weight: 800; /* Extra-Bold */
+    font-style: normal;
+}
+
 .logo {
     font-family: 'Open Sans', sans-serif;
     font-size: 30pt;
@@ -27,11 +55,8 @@
   
   @media all and (max-width: 767px) {
     .featured-title {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'AktivGrotesk-Bold', sans-serif;
         font-weight: 800;
-        font-size: 21pt !important;
-        line-height: 1;
-        letter-spacing: -2px;
     }
   }
 
@@ -41,20 +66,23 @@ h1, h2, h4, h5, h6 {
 }
 
 .featured-title {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 800;
-    font-size: 32pt;
-    letter-spacing: -2px;
+    font-family: 'AktivGrotesk-ExtraBold', sans-serif;
+    font-weight: 700;
+    font-size: 21.5pt;
+    letter-spacing: -1px;
+    line-height: 1;
 }
 
 .featured-subtitle {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-Regular', sans-serif;
     font-size: 13.5pt;
     opacity: 0.4;
+    font-weight: 400;
+    letter-spacing: -0.5px;
 }
 
 .featured-author {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'AktivGrotesk-SemiBold', sans-serif;
     font-weight: 600;
     opacity: 0.8 !important;
 }
