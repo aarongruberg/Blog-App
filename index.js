@@ -89,7 +89,14 @@ app.get("/", async (req, res) => {
     try {
         let result = await db.query("select category from articles");
         categories = result.rows;
-        //console.log(categories);
+        const categoryMap = new Map();
+
+        categories.forEach(cat => {
+        categoryMap.set(cat.category, cat);
+        });
+
+        categories = Array.from(categoryMap.values());
+        console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -151,7 +158,14 @@ app.get("/admin", async (req, res) => {
     try {
         let result = await db.query("select category from articles");
         categories = result.rows;
-        //console.log(categories);
+        const categoryMap = new Map();
+
+        categories.forEach(cat => {
+        categoryMap.set(cat.category, cat);
+        });
+
+        categories = Array.from(categoryMap.values());
+        console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -175,7 +189,14 @@ app.post("/admin/compose", async (req, res) => {
     try {
         let result = await db.query("select category from articles");
         categories = result.rows;
-        //console.log(categories);
+        const categoryMap = new Map();
+
+        categories.forEach(cat => {
+        categoryMap.set(cat.category, cat);
+        });
+
+        categories = Array.from(categoryMap.values());
+        console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -191,10 +212,8 @@ app.post("/admin/submit", async (req, res) => {
     time = new Date().toLocaleTimeString('default', {timeStyle: 'short'});
     date = new Date().toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric'});
 
-    // log the image file that was uploaded
-    //console.log(req.files);
-
-    // Get file that was uploaded to our "image" form field
+    // This line extracts the uploaded image from req.files, 
+    // which is where files sent through a form upload are stored when using middleware like multer.
     const { image } = req.files;
 
     // Move the uploaded image to our upload folder
@@ -223,7 +242,14 @@ app.get("/posts/:test", async (req, res) => {
     try {
         let result = await db.query("select category from articles");
         categories = result.rows;
-        //console.log(categories);
+        const categoryMap = new Map();
+
+        categories.forEach(cat => {
+        categoryMap.set(cat.category, cat);
+        });
+
+        categories = Array.from(categoryMap.values());
+        console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -279,7 +305,14 @@ app.get("/admin/posts/:test", async (req, res) => {
     try {
         let result = await db.query("select category from articles");
         categories = result.rows;
-        //console.log(categories);
+        const categoryMap = new Map();
+
+        categories.forEach(cat => {
+        categoryMap.set(cat.category, cat);
+        });
+
+        categories = Array.from(categoryMap.values());
+        console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -335,7 +368,14 @@ app.post("/admin/edit-post", async (req, res) => {
     try {
         let result = await db.query("select category from articles");
         categories = result.rows;
-        //console.log(categories);
+        const categoryMap = new Map();
+
+        categories.forEach(cat => {
+        categoryMap.set(cat.category, cat);
+        });
+
+        categories = Array.from(categoryMap.values());
+        console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -441,7 +481,14 @@ app.get('/categories/:category', async (req, res) => {
     try {
         let result = await db.query("select category from articles");
         categories = result.rows;
-        //console.log(categories);
+        const categoryMap = new Map();
+
+        categories.forEach(cat => {
+        categoryMap.set(cat.category, cat);
+        });
+
+        categories = Array.from(categoryMap.values());
+        console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -473,6 +520,14 @@ app.get('/categories/:category', async (req, res) => {
                     let result = await db.query("select * from articles where category = $1", [category]);
                     articlesInCategory = result.rows;
                     console.log(articlesInCategory);
+                    res.render("category.ejs", {
+                        featuredTitle: featured.title,
+                        category: category,
+                        categories: categories,
+                        articlesInCategory: articlesInCategory
+                    });
+                    //Exit the loop to make sure res.render() is only called once
+                    return;
                   }
                   catch(err) {
                     console.log(err.message);
@@ -480,11 +535,7 @@ app.get('/categories/:category', async (req, res) => {
             }
           } 
     }
-    res.render("category.ejs", {
-        featuredTitle: featured.title,
-        categories: categories,
-        articlesInCategory: articlesInCategory
-    });
+    
 });
 
 

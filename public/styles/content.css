@@ -197,7 +197,7 @@ svg {
   }
 
   @media all and (max-width: 767px) {
-    .row.latest.categorymatch{
+    .preview-row.categorymatch{
       padding-top: 20% !important;
     }
   }
@@ -610,4 +610,9 @@ a {
   padding-left: 0;
   height: auto;
   width: auto;
+}
+
+.category-page-title{
+  padding-top: 20%;
+  padding-left: 4%;
 }

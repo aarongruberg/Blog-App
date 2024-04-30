@@ -1,6 +1,7 @@
 <%- include("partials/header.ejs") %>
 
 <body>
+    <h1 class="category-page-title"> <%= category %> </h1>
 <!--Loop through the posts and add them to the div tags-->
     <!--"..." is used to make a copy of the array before reversing the order-->
     <!--Made a copy just in case it's helpful to have the original array structure later-->
@@ -15,8 +16,8 @@
 
             <% if (post.title == featuredTitle) { %>
 
-                <a class="preview-row" href="/posts/<%= post.title %>">
-                    <div class="row latest categorymatch">
+                <a class="preview-row categorymatch" href="/posts/<%= post.title %>">
+                    <div class="row latest">
                         <div class="col-12 featured-preview">
                             <img class="featured-thumbnail" src= "<%= post.image_path %>" alt="sf profile">
                             <h6 class="featured-label">Featured Article</h6>
@@ -29,8 +30,8 @@
             
             <% } else { %>
 
-                <a class="preview-row" href="/posts/<%= post.title %>">
-                <div class="row latest categorymatch">
+                <a class="preview-row categorymatch" href="/posts/<%= post.title %>">
+                <div class="row latest">
                     <div class="col-8 col-md-3 previewTitle">
                         <p class="preview-category"> <%= post.category %> </p>
                         <h5 class="preview-title-text"> <%= post.title %> </h5>
