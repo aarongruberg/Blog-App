@@ -33,6 +33,8 @@ var featured = 0;
 var oldFeatured = 0;
 var pinned = 0;
 let articles = [];
+let categories = [];
+let articlesInCategory = [];
 
 // Date and time
 let date = '';
@@ -81,20 +83,29 @@ app.get("/", async (req, res) => {
             pinnedArray.push(articles[index]);
         }
     }
-    //console.log(pinnedArray);
     
+    //Get categories from db
+    try {
+        let result = await db.query("select category from articles");
+        categories = result.rows;
+        //console.log(categories);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
     res.render("index.ejs", {featuredTitle: featuredTitle,
         featuredSubtitle: featuredSubtitle,
         featuredAuthor: featuredAuthor,
         featuredImage: featuredImage,
         pinnedArray: pinnedArray,
+        categories: categories,
         articles: articles});
          //console.log(articles);
 
          oldFeatured = featured;
 });
 
-// Admin Console Homepage
+// Admin Homepage
 app.get("/admin", async (req, res) => {
     // Read from db
     try {
@@ -134,13 +145,23 @@ app.get("/admin", async (req, res) => {
             pinnedArray.push(articles[index]);
         }
     }
-    //console.log(pinnedArray);
     
+    //Get categories from db
+    try {
+        let result = await db.query("select category from articles");
+        categories = result.rows;
+        //console.log(categories);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+
     res.render("admin.ejs", {featuredTitle: featuredTitle,
         featuredSubtitle: featuredSubtitle,
         featuredAuthor: featuredAuthor,
         featuredImage: featuredImage,
         pinnedArray: pinnedArray,
+        categories: categories,
         articles: articles});
          //console.log(articles);
 
@@ -148,8 +169,19 @@ app.get("/admin", async (req, res) => {
 });
 
 // Compose a blog post
-app.post("/admin/compose", (req, res) => {
-    res.render("create.ejs");
+app.post("/admin/compose", async (req, res) => {
+    //Get categories from db
+    try {
+        let result = await db.query("select category from articles");
+        categories = result.rows;
+        //console.log(categories);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+    res.render("create.ejs", {
+        categories: categories
+    });
   });
 
 // Submit your blog post
@@ -185,7 +217,16 @@ app.post("/admin/submit", async (req, res) => {
 });
 
 // Navigate to a specific blog post
-app.get("/posts/:test", (req, res) => {
+app.get("/posts/:test", async (req, res) => {
+    //Get categories from db
+    try {
+        let result = await db.query("select category from articles");
+        categories = result.rows;
+        //console.log(categories);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
     
     // Convert url input text to lowercase using Lodash
     const requestedTitle = _.lowerCase(req.params.test);
@@ -221,7 +262,8 @@ app.get("/posts/:test", (req, res) => {
                     time: articles[i].time,
                     date: articles[i].date,
                     imagePath: articles[i].image_path,
-                    category: articles[i].category
+                    category: articles[i].category,
+                    categories:categories
                 });
             }
           }
@@ -231,7 +273,16 @@ app.get("/posts/:test", (req, res) => {
 });
 
 //Admin view specific post
-app.get("/admin/posts/:test", (req, res) => {
+app.get("/admin/posts/:test", async (req, res) => {
+    //Get categories from db
+    try {
+        let result = await db.query("select category from articles");
+        categories = result.rows;
+        //console.log(categories);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
     
     // Convert url input text to lowercase using Lodash
     const requestedTitle = _.lowerCase(req.params.test);
@@ -267,7 +318,8 @@ app.get("/admin/posts/:test", (req, res) => {
                     time: articles[i].time,
                     date: articles[i].date,
                     imagePath: articles[i].image_path,
-                    category: articles[i].category
+                    category: articles[i].category,
+                    categories: categories
                 });
             }
           }
@@ -278,6 +330,16 @@ app.get("/admin/posts/:test", (req, res) => {
 
 //Admin edit a post
 app.post("/admin/edit-post", async (req, res) => {
+    //Get categories from db
+    try {
+        let result = await db.query("select category from articles");
+        categories = result.rows;
+        //console.log(categories);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+
     //Fetch article from db that matches the current article's title
     let currentTitle = req.body.title;
     let currentArticle = [];
@@ -291,7 +353,8 @@ app.post("/admin/edit-post", async (req, res) => {
       }
 
     res.render("edit.ejs", {
-        currentArticle: currentArticle
+        currentArticle: currentArticle,
+        categories: categories
     });
   });
 
@@ -369,6 +432,58 @@ app.post("/admin/delete-post", async (req, res) => {
         console.log(err.message);
       }
     res.redirect("/admin");
+});
+
+//Select category from menu and view those articles
+app.get('/categories/:category', async (req, res) => {
+    //Get categories from db
+    try {
+        let result = await db.query("select category from articles");
+        categories = result.rows;
+        //console.log(categories);
+      }
+      catch(err) {
+        console.log(err.message);
+      }
+
+    // Convert category text from header.ejs form to lowercase using Lodash
+    const requestedCategory = _.lowerCase(req.params.category);
+    //console.log(requestedCategory);
+
+    // Convert article's category to lowercase using Lodash
+    if (articles != undefined) {
+        for (let i = 0; i < articles.length; i++) {
+
+            // Keep original category
+            let category = articles[i].category;
+            //console.log(category);
+
+            // Create a copy of article category element and 
+            // convert that copy of title to lower case
+            var copyCategory = articles[i].category;
+            copyCategory =  _.lowerCase(copyCategory);
+            //console.log(copyCategory);
+
+             // Check if articles category includes the requestedCategory
+            if (copyCategory.includes(requestedCategory)) {
+                //console.log("match found");
+                //Get all the articles in selected category
+                try {
+                    let result = await db.query("select * from articles where category = $1", [category]);
+                    articlesInCategory = result.rows;
+                    console.log(articlesInCategory);
+                  }
+                  catch(err) {
+                    console.log(err.message);
+                  }
+            }
+          } 
+    }
+    res.render("category.ejs", {
+        featuredTitle: featured.title,
+        categories: categories,
+        articlesInCategory: articlesInCategory
+    });
 });
 
 

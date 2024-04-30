@@ -197,6 +197,12 @@ svg {
   }
 
   @media all and (max-width: 767px) {
+    .row.latest.categorymatch{
+      padding-top: 20% !important;
+    }
+  }
+
+  @media all and (max-width: 767px) {
     .previewTitle {   
         padding-right: 0% !important;
         
