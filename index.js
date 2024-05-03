@@ -9,12 +9,26 @@ const { result } = _;
 const app = express();
 const port = 3000;
 
+/*Localhost Postgres Credentials
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
   database: "dinocrunch",
   password: "dorian",
   port: 5432
+});
+*/
+
+//Edited credentials for AWS LightSail Postgres instance
+const db = new pg.Client({
+  user: "dbmasteruser",
+  host: "ls-0573b51bc63c4de721384e7d7e950b03de38d56b.c70oko4aqkf3.us-west-2.rds.amazonaws.com",
+  database: "dbmaster",
+  password: "0^BNQ7kcgv]%!3dgrO<|b&}D9JHah2U-",
+  port: 5432,
+  ssl: {
+    rejectUnauthorized: false  // Set to true in production for security
+  }
 });
 db.connect();
 

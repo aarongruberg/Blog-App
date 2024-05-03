@@ -8,6 +8,11 @@ body {
     padding-left: 30px;
   }
 
+.navbar-nav.flex-column {
+  background-color: white;
+  height: auto;
+}
+
 svg {
     height: 17px;
     width: 20px;
@@ -495,7 +500,7 @@ a {
 
 .preview-title-text {
   margin-bottom: 2%;
-  width: 107%;
+  width: 100%;
   white-space: normal;
 }
 
