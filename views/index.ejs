@@ -5,8 +5,11 @@
 <div class="container">
     
     <!--Featured Article-->
-    <a class="preview-row" href="/posts/<%= featuredTitle %>">
-    <div class="row featured">
+    <!--<a class="preview-row" href="/posts/<%= featuredTitle %>"> -->
+    <!--This handleClick function call is highlighted as an error but it works!-->
+    <!--Had to replace any apostrophe character in featuredTitle before passing to handleClick-->
+    <a href="javascript:void(0);" onclick="handleClick('<%- featuredTitle.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
+        <div class="row featured">
         <div class="col-7 featured">
             <h2 class="featured-title"> <%= featuredTitle %> </h2>
             <p class="featured-subtitle"> <%= featuredSubtitle %> </p>
@@ -17,6 +20,25 @@
         </div>
     </div>
     </a>
+    <!--handleClick creates a copy of featuredTitle without special characters-->
+    <!--and spaces replaced by hyphens-->
+    <script>
+    function handleClick(title) {
+        console.log(title);
+    try {
+        // Modify the parameter, for instance, removing non-alphanumeric characters
+        let cleanTitle = title.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-');
+        
+        // Encode the title component to handle special characters properly
+        let encodedTitle = encodeURIComponent(cleanTitle);
+        
+        // Redirect to the cleaned URL with the encoded title
+        window.location.href = `/posts/${encodedTitle}`;
+    } catch (error) {
+        console.error("Error handling click:", error);
+    }
+    }
+    </script>    
 
     <div class="row featured-line">
         <div class="col-12 featured-line">
@@ -30,7 +52,8 @@
         <% pinnedArray.forEach(function(pinnedArticle, index) { %>
 
             <% if (index == pinnedArray.length - 1) { %>
-                <a class="preview-row" href="/posts/<%= pinnedArticle.title %>">
+                <!--<a class="preview-row" href="/posts/<%= pinnedArticle.title %>"> -->
+                <a href="javascript:void(0);" onclick="handleClick('<%- pinnedArticle.title.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
                     <div class="row latest">
                         <div class="col-11 featured-preview">
                             <p class="preview-category"> <%= pinnedArticle.category %> </p>
@@ -41,7 +64,8 @@
                     </div>
                 </a> 
             <% } else { %>
-                <a class="preview-row" href="/posts/<%= pinnedArticle.title %>">
+                <!--<a class="preview-row" href="/posts/<%= pinnedArticle.title %>"> -->
+                <a href="javascript:void(0);" onclick="handleClick('<%- pinnedArticle.title.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
                     <div class="row latest">
                         <div class="col-11 featured-preview">
                             <p class="preview-category"> <%= pinnedArticle.category %> </p>
@@ -77,7 +101,8 @@
 
             <% if (post.title == featuredTitle) { %>
 
-                <a class="preview-row" href="/posts/<%= post.title %>">
+                <!--<a class="preview-row" href="/posts/<%= post.title %>"> -->
+                <a href="javascript:void(0);" onclick="handleClick('<%- post.title.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
                     <div class="row latest">
                         <div class="col-12 featured-preview">
                             <img class="featured-thumbnail" src= "<%= post.image_path %>" alt="sf profile">
@@ -91,7 +116,8 @@
             
             <% } else { %>
 
-                <a class="preview-row" href="/posts/<%= post.title %>">
+                <!--<a class="preview-row" href="/posts/<%= post.title %>"> -->
+                <a href="javascript:void(0);" onclick="handleClick('<%- post.title.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
                 <div class="row latest">
                     <div class="col-8 col-md-3 previewTitle">
                         <p class="preview-category"> <%= post.category %> </p>

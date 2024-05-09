@@ -110,7 +110,7 @@ app.get("/", async (req, res) => {
         });
 
         categories = Array.from(categoryMap.values());
-        console.log(categories);
+        //console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -179,7 +179,7 @@ app.get("/admin", async (req, res) => {
         });
 
         categories = Array.from(categoryMap.values());
-        console.log(categories);
+        //console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -210,7 +210,7 @@ app.post("/admin/compose", async (req, res) => {
         });
 
         categories = Array.from(categoryMap.values());
-        console.log(categories);
+        //console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -263,16 +263,19 @@ app.get("/posts/:test", async (req, res) => {
         });
 
         categories = Array.from(categoryMap.values());
-        console.log(categories);
+        //console.log(categories);
       }
       catch(err) {
         console.log(err.message);
       }
     
     // Convert url input text to lowercase using Lodash
-    const requestedTitle = _.lowerCase(req.params.test);
+    let requestedTitle = _.lowerCase(req.params.test);
+    requestedTitle = requestedTitle.replace(/[^a-zA-Z0-9 ]/g, '');
+    requestedTitle = requestedTitle.replace(/\s+/g, '-');
+    console.log("requested:", requestedTitle);
 
-    // Convert postArray title to lowercase using Lodash
+    // Convert article title to lowercase using Lodash
     if (articles != undefined) {
         for (let i = 0; i < articles.length; i++) {
 
@@ -282,18 +285,18 @@ app.get("/posts/:test", async (req, res) => {
             // Author name
             const author = articles[i].author;
 
-            // Create a copy of postArray title element and 
+            // Create a copy of article title element and 
             // convert that copy of title to lower case
             var copyTitle = articles[i].title;
             copyTitle =  _.lowerCase(copyTitle);
-
-            //console.log(copyTitle);
-            //console.log(requestedTitle);
-
-             // Check if articles includes the requestedTitle
+            copyTitle = copyTitle.replace(/[^a-zA-Z0-9 ]/g, '');
+            copyTitle = copyTitle.replace(/\s+/g, '-');            
+             
+            // Check if articles includes the requestedTitle
             if (copyTitle.includes(requestedTitle)) {
 
-                //console.log("match found");
+                console.log("Copied : ", copyTitle);
+                console.log("match found");
 
                 // Send user to selected post
                 res.render("post.ejs", {
@@ -306,9 +309,8 @@ app.get("/posts/:test", async (req, res) => {
                     category: articles[i].category,
                     categories:categories
                 });
-            }
+            } 
           }
-        
     }
 
 });
@@ -326,7 +328,7 @@ app.get("/admin/posts/:test", async (req, res) => {
         });
 
         categories = Array.from(categoryMap.values());
-        console.log(categories);
+        //console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -389,7 +391,7 @@ app.post("/admin/edit-post", async (req, res) => {
         });
 
         categories = Array.from(categoryMap.values());
-        console.log(categories);
+        //console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -502,7 +504,7 @@ app.get('/categories/:category', async (req, res) => {
         });
 
         categories = Array.from(categoryMap.values());
-        console.log(categories);
+        //console.log(categories);
       }
       catch(err) {
         console.log(err.message);
@@ -533,7 +535,7 @@ app.get('/categories/:category', async (req, res) => {
                 try {
                     let result = await db.query("select * from articles where category = $1", [category]);
                     articlesInCategory = result.rows;
-                    console.log(articlesInCategory);
+                    //console.log(articlesInCategory);
                     res.render("category.ejs", {
                         featuredTitle: featured.title,
                         category: category,
