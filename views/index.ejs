@@ -40,12 +40,6 @@
     }
     </script>    
 
-    <div class="row featured-line">
-        <div class="col-12 featured-line">
-            <hr>
-        </div>
-    </div>
-
     <!--Pinned Articles-->
     <!--Loop through pinnedArray-->
     <% if (locals.pinnedArray) { %>
@@ -54,20 +48,20 @@
             <% if (index == pinnedArray.length - 1) { %>
                 <!--<a class="preview-row" href="/posts/<%= pinnedArticle.title %>"> -->
                 <a href="javascript:void(0);" onclick="handleClick('<%- pinnedArticle.title.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
-                    <div class="row latest">
-                        <div class="col-11 featured-preview">
+                    <div class="row pinned">
+                        <div class="col-12 featured-preview">
                             <p class="preview-category"> <%= pinnedArticle.category %> </p>
                             <h5 class="preview-title-text pinned"> <%= pinnedArticle.title %> </h5>
                             <p class="preview-author"> <%= pinnedArticle.author %> </p>
-                            <hr class="thick-line">
+                            <hr class="last-thin-line">
                         </div>
                     </div>
                 </a> 
             <% } else { %>
                 <!--<a class="preview-row" href="/posts/<%= pinnedArticle.title %>"> -->
                 <a href="javascript:void(0);" onclick="handleClick('<%- pinnedArticle.title.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
-                    <div class="row latest">
-                        <div class="col-11 featured-preview">
+                    <div class="row pinned">
+                        <div class="col-12 featured-preview">
                             <p class="preview-category"> <%= pinnedArticle.category %> </p>
                             <h5 class="preview-title-text pinned"> <%= pinnedArticle.title %> </h5>
                             <p class="preview-author"> <%= pinnedArticle.author %> </p>
@@ -95,7 +89,7 @@
             
             <div class="row line">
                 <div class="col-12 line">
-                    <hr>
+                    <hr class="thick-line">
                 </div>
             </div>
 

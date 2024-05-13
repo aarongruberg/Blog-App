@@ -27,8 +27,8 @@
 }
 
 .logo {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 30pt;
+    font-family: 'AktivGrotesk-ExtraBold', sans-serif;
+    font-size: 33pt;
     font-weight: 800;
 }
 
@@ -38,14 +38,14 @@
 }
 
 
-@media all and (max-width: 767px) {
+@media all and (max-width: 768px) {
     .nav-link {
        font-family: 'Open Sans', sans-serif;
        font-size: 16pt;
     }
   }
 
-  @media all and (max-width: 767px) {
+  @media all and (max-width: 768px) {
     .create-post-button {
        font-family: 'Open Sans', sans-serif;
        font-size: 16pt;
@@ -53,10 +53,13 @@
   }
 
   
-  @media all and (max-width: 767px) {
+  @media all and (max-width: 768px) {
     .featured-title {
         font-family: 'AktivGrotesk-Bold', sans-serif;
         font-weight: 800;
+        font-size: 24pt !important;
+        letter-spacing: -0.5px !important;
+        line-height: 1.15 !important;
     }
   }
 
@@ -92,29 +95,39 @@ p {
     font-size: 10pt;
 }
 
+.latestTitle{
+    font-family: 'AktivGrotesk-ExtraBold', sans-serif;
+    font-weight: 700;
+    font-size: 17.5pt;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
 .preview-category {
     font-family: 'AktivGrotesk-Regular', sans-serif;
-    font-size: 10pt !important;
+    font-size: 11pt !important;
 }
 
 .preview-title-text {
     font-family: 'AktivGrotesk-ExtraBold', sans-serif;
     letter-spacing: -0.5px !important;
-    font-weight: 600;
-    font-size: 16pt;
+    font-weight: 700;
+    font-size: 17.5pt;
 }
 
 .preview-title-text.pinned {
     font-family: 'AktivGrotesk-ExtraBold', sans-serif;
     letter-spacing: -0.5px !important;
-    font-weight: 600;
-    font-size: 13pt;
+    font-weight: 800;
+    font-size: 14pt;
 }
 
 .preview-author {
     font-family: 'AktivGrotesk-SemiBold', sans-serif;
-    font-weight: 600;
+    font-weight: 800;
+    font-size: 11pt;
     opacity: 0.8 !important;
+
 }
 
 .post-category {
