@@ -85,9 +85,9 @@ h1, h2, h4, h5, h6 {
 }
 
 .featured-author {
-    font-family: 'AktivGrotesk-SemiBold', sans-serif;
-    font-weight: 400;
-    opacity: 0.8 !important;
+    font-family: 'AktivGrotesk-Bold', sans-serif;
+    font-size: 11pt !important;
+    opacity: 0.88 !important;
 }
 
 p {
@@ -113,6 +113,7 @@ p {
     letter-spacing: -0.5px !important;
     font-weight: 700;
     font-size: 17.5pt;
+    line-height: 1.1;
 }
 
 .preview-title-text.pinned {
@@ -120,13 +121,14 @@ p {
     letter-spacing: -0.5px !important;
     font-weight: 800;
     font-size: 14pt;
+    line-height: 1.2;
 }
 
 .preview-author {
-    font-family: 'AktivGrotesk-SemiBold', sans-serif;
+    font-family: 'AktivGrotesk-Bold', sans-serif;
     font-weight: 800;
     font-size: 11pt;
-    opacity: 0.8 !important;
+    opacity: 0.88 !important;
 
 }
 
@@ -134,45 +136,51 @@ p {
     font-family: 'AktivGrotesk-Regular', sans-serif;
     letter-spacing: normal;
     font-weight: 400;
+    font-size: 11pt;
 }
 
 .post-title {
     font-family: 'AktivGrotesk-ExtraBold', sans-serif;
     font-weight: 800;
-    font-size: 21pt;
+    font-size: 24pt;
     letter-spacing: -1px;
 }
 
 .post-author {
-    font-family: 'AktivGrotesk-SemiBold', sans-serif;
-    font-weight: 600;
-    font-size: 10pt;
+    font-family: 'AktivGrotesk-Bold', sans-serif;
+    font-weight: 800;
+    font-size: 11pt;
     letter-spacing: normal;
-    opacity: 0.8 !important;
+    opacity: 0.88 !important;
 }
 
 .green-slash {
     font-family: 'AktivGrotesk-Regular', sans-serif;
-    font-size: 8pt;
+    font-size: 10pt;
     font-weight: 400;
 }
 
 .post-datetime {
     font-family: 'AktivGrotesk-Regular', sans-serif;
-    font-size: 8pt;
+    font-size: 10pt;
     font-weight: 400;
 }
 
 .image-credits-bold {
     font-family: 'AktivGrotesk-Bold', sans-serif;
     font-weight: 600;
-    font-size: 9.5pt;
+    font-size: 12pt;
 }
 
+.image-credits {
+    font-family: 'AktivGrotesk-Regular', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+}
 
 .post-content-text {
     font-family: 'AktivGrotesk-Regular', sans-serif;
-    font-size: 11.5pt;
+    font-size: 15pt;
     line-height: 2;
 }
 
