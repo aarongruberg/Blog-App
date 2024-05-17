@@ -2,7 +2,7 @@
 
 <body>
 
-<div class="container">
+<div class="container container-sm">
     
     <!--Featured Article-->
     <!--<a class="preview-row" href="/posts/<%= featuredTitle %>"> -->
@@ -10,12 +10,12 @@
     <!--Had to replace any apostrophe character in featuredTitle before passing to handleClick-->
     <a href="javascript:void(0);" onclick="handleClick('<%- featuredTitle.replace(/['"\\]/g, "\\$&") %>')" class="preview-row">
         <div class="row featured">
-        <div class="col-7 featured">
+        <div class="col-7 col-sm-12 featured">
             <h2 class="featured-title"> <%= featuredTitle %> </h2>
             <p class="featured-subtitle"> <%= featuredSubtitle %> </p>
             <p class="featured-author"> <%= featuredAuthor %> </p>
         </div>
-        <div class="col-12 col-md-6 featured">
+        <div class="col-12 col-sm-12 col-md-6 featured">
             <img class="profile" src="<%=featuredImage%>" alt="sf profile">
         </div>
     </div>
